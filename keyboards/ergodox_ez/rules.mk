@@ -33,10 +33,10 @@ SRC += matrix.c \
 	   led_i2c.c
 QUANTUM_LIB_SRC += i2c_master.c
 
-MOUSE_SHARED_EP = no
+MOUSE_SHARED_EP = yes
 
 # Disable unsupported hardware
 AUDIO_SUPPORTED = no
 BACKLIGHT_SUPPORTED = no
 
-MOUSE_SHARED_EP = no
+MOUSE_SHARED_EP = yes
