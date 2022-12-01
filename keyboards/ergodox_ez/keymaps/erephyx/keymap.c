@@ -154,8 +154,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-
-rgblight_config_t rgblight_config;
 bool disable_layer_color = 0;
 
 bool suspended = false;
@@ -297,18 +295,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
     }
     return false;
-
-    case RGB_SLD:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-      }
-      return false;
-
-    case TOGGLE_LAYER_COLOR:
-      if (record->event.pressed) {
-        disable_layer_color ^= 1;
-      }
-      return false;
   }
   return true;
 }
@@ -353,57 +339,6 @@ uint32_t layer_state_set_user(uint32_t state) {
         ergodox_right_led_3_on();
         break;
       default:
-        break;
-    }
-    switch (layer) {
-      case 0: // layer 0 neon pink
-        if(!disable_layer_color) {
-          rgblight_enable_noeeprom();
-          rgblight_mode_noeeprom(1);
-          rgblight_sethsv_noeeprom(213,255,255);
-        }
-        break;
-      case 1: // nav layer blue
-        if(!disable_layer_color) {
-          rgblight_enable_noeeprom();
-          rgblight_mode_noeeprom(1);
-          // rgblight_sethsv_noeeprom(119,235,255);
-          rgblight_sethsv_range(120,255,255, (uint8_t)RGBLED_NUM / 2, (uint8_t)RGBLED_NUM);
-        }
-        break;
-      case 2: // mouse layer blue
-        if(!disable_layer_color) {
-          rgblight_enable_noeeprom();
-          rgblight_mode_noeeprom(1);
-          // rgblight_sethsv_noeeprom(119,235,255);
-          rgblight_sethsv_range(120,255,255, 0, (uint8_t)RGBLED_NUM / 2);
-        }
-        break;
-      case 3: // editing green
-        if(!disable_layer_color) {
-          rgblight_enable_noeeprom();
-          rgblight_mode_noeeprom(1);
-          rgblight_sethsv_noeeprom(86,255,255);
-        }
-        break;
-      case 4:
-        if(!disable_layer_color) {
-                rgblight_enable_noeeprom();
-                rgblight_mode_noeeprom(8);
-        }
-        break;
-      default:
-        if(!disable_layer_color) {
-          rgblight_config.raw = eeconfig_read_rgblight();
-          if(rgblight_config.enable == true) {
-            rgblight_enable();
-            rgblight_mode(rgblight_config.mode);
-            rgblight_sethsv(rgblight_config.hue, rgblight_config.sat, rgblight_config.val);
-          }
-          else {
-            rgblight_disable();
-          }
-        }
         break;
     }
     return state;

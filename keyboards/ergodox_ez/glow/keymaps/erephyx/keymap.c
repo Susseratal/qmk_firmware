@@ -154,11 +154,64 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+extern rgb_config_t rgb_matrix_config;
 
-rgblight_config_t rgblight_config;
-bool disable_layer_color = 0;
+void keyboard_post_init_user(void) {
+    rgb_matrix_enable();
+}
 
-bool suspended = false;
+const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
+    [0] = { {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255} },
+
+    [1] = { {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {119,235,255}, {213,255,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {213,255,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {213,255,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255} },
+
+    [2] = { {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {213,255,255}, {213,255,255}, {213,255,255}, {213,255,255}, {119,235,255}, {213,255,255}, {119,235,255}, {119,235,255}, {213,255,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {213,255,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {213,255,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {119,235,255}, {213,255,255}, {213,255,255}, {119,235,255}, {119,235,255}, {119,235,255} },
+
+    [3] = { {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255}, {84,255,255} },
+
+};
+
+void set_layer_color(int layer) {
+  for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+    HSV hsv = {
+      .h = pgm_read_byte(&ledmap[layer][i][0]),
+      .s = pgm_read_byte(&ledmap[layer][i][1]),
+      .v = pgm_read_byte(&ledmap[layer][i][2]),
+    };
+    if (!hsv.h && !hsv.s && !hsv.v) {
+        rgb_matrix_set_color( i, 0, 0, 0 );
+    } else {
+        RGB rgb = hsv_to_rgb( hsv );
+        float f = (float)rgb_matrix_config.hsv.v / UINT8_MAX;
+        rgb_matrix_set_color( i, f * rgb.r, f * rgb.g, f * rgb.b );
+    }
+  }
+}
+
+void rgb_matrix_indicators_user(void) {
+  if (keyboard_config.disable_layer_led) { return; }
+  switch (biton32(layer_state)) {
+    case 0:
+      set_layer_color(0);
+      break;
+    case 1:
+      set_layer_color(1);
+      break;
+    case 2:
+      set_layer_color(2);
+      break;
+    case 3:
+      set_layer_color(3);
+      break;
+    case 4:
+      RGB_MATRIX_HUE_BREATHING();
+      break;
+   default:
+    if (rgb_matrix_get_flags() == LED_FLAG_NONE)
+      rgb_matrix_set_color_all(0, 0, 0);
+    break;
+  }
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
@@ -303,10 +356,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         rgblight_mode(1);
       }
       return false;
-
-    case TOGGLE_LAYER_COLOR:
+    case HSV_0_0_255:
       if (record->event.pressed) {
-        disable_layer_color ^= 1;
+          rgblight_mode(1);
+          rgblight_sethsv(0,0,255);
       }
       return false;
   }
@@ -353,57 +406,6 @@ uint32_t layer_state_set_user(uint32_t state) {
         ergodox_right_led_3_on();
         break;
       default:
-        break;
-    }
-    switch (layer) {
-      case 0: // layer 0 neon pink
-        if(!disable_layer_color) {
-          rgblight_enable_noeeprom();
-          rgblight_mode_noeeprom(1);
-          rgblight_sethsv_noeeprom(213,255,255);
-        }
-        break;
-      case 1: // nav layer blue
-        if(!disable_layer_color) {
-          rgblight_enable_noeeprom();
-          rgblight_mode_noeeprom(1);
-          // rgblight_sethsv_noeeprom(119,235,255);
-          rgblight_sethsv_range(120,255,255, (uint8_t)RGBLED_NUM / 2, (uint8_t)RGBLED_NUM);
-        }
-        break;
-      case 2: // mouse layer blue
-        if(!disable_layer_color) {
-          rgblight_enable_noeeprom();
-          rgblight_mode_noeeprom(1);
-          // rgblight_sethsv_noeeprom(119,235,255);
-          rgblight_sethsv_range(120,255,255, 0, (uint8_t)RGBLED_NUM / 2);
-        }
-        break;
-      case 3: // editing green
-        if(!disable_layer_color) {
-          rgblight_enable_noeeprom();
-          rgblight_mode_noeeprom(1);
-          rgblight_sethsv_noeeprom(86,255,255);
-        }
-        break;
-      case 4:
-        if(!disable_layer_color) {
-                rgblight_enable_noeeprom();
-                rgblight_mode_noeeprom(8);
-        }
-        break;
-      default:
-        if(!disable_layer_color) {
-          rgblight_config.raw = eeconfig_read_rgblight();
-          if(rgblight_config.enable == true) {
-            rgblight_enable();
-            rgblight_mode(rgblight_config.mode);
-            rgblight_sethsv(rgblight_config.hue, rgblight_config.sat, rgblight_config.val);
-          }
-          else {
-            rgblight_disable();
-          }
-        }
         break;
     }
     return state;

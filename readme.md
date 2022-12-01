@@ -16,12 +16,12 @@ You can request changes by making a fork and opening a [pull request](https://gi
 
 ## Supported
 
+* [ErgoDox EZ Default](/keyboards/ergodox_ez)
 * [ErgoDox EZ Shine](/keyboards/ergodox_ez/shine)
+* [ErgoDox EZ Glow](/keyboards/ergodox_ez/glow) // I've not been able to test this one, so if you choose to test this, please get in touch so I can make sure everything works
 
 ## Only default keymaps available
 
-* [ErgoDox EZ Default](/keyboards/ergodox_ez)
-* [ErgoDox EZ Glow](/keyboards/ergodox_ez/glow)
 * [Moonlander Mark I](/keyboards/moonlander)
 
 ## Currently Unsupported
