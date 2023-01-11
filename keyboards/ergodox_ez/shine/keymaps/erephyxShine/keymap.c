@@ -47,6 +47,7 @@
 #define BP_NDSH_MAC ALGR(KC_8)
 #define SE_SECT_MAC ALGR(KC_6)
 
+// notes - can get rid of macro 7
 enum custom_keycodes {
   RGB_SLD = EZ_SAFE_RANGE,
   ST_MACRO_0,
@@ -102,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [1] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT,        KC_F1,            KC_F2,            KC_F3,             KC_F4,            KC_F5,            KC_F6,                                                                                  KC_F7,            KC_F8,            KC_F9,            KC_F10,           KC_F11,           KC_F12,                KC_TRANSPARENT,
-    KC_MEDIA_PREV_TRACK,   LCTL(KC_W),       LCTL(KC_RIGHT),   LCTL(KC_L),        LCTL(KC_Y),       ST_MACRO_18,      KC_TRANSPARENT,                                                                         KC_TRANSPARENT,   LCTL(KC_C),       LCTL(KC_Z),       ST_MACRO_8,       ST_MACRO_1,       ST_MACRO_2,            KC_MEDIA_NEXT_TRACK,
+    KC_MEDIA_PREV_TRACK,   LCTL(KC_W),       LCTL(KC_RIGHT),   LCTL(KC_L),        LCTL(KC_Y),       ST_MACRO_18,      KC_TRANSPARENT,                                                                         KC_TRANSPARENT,   LCTL(KC_C),       LCTL(KC_Z),       ST_MACRO_8,       ST_MACRO_1,       LCTL(KC_V),            KC_MEDIA_NEXT_TRACK,
     KC_TRANSPARENT,        ST_MACRO_9,       LCTL(KC_S),       LCTL(KC_DELETE),   KC_TRANSPARENT,   TD(DANCE_1),                                                                                                                KC_LEFT,          KC_DOWN,          KC_UP,            KC_RIGHT,         KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
     KC_TRANSPARENT,        KC_TRANSPARENT,   ST_MACRO_10,      ST_MACRO_0,        ST_MACRO_19,      LCTL(KC_LEFT),    KC_TRANSPARENT,                                                                         KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   LCTL(UK_F),            KC_TRANSPARENT,
     KC_TRANSPARENT,        KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,    KC_TRANSPARENT,                                                                                                                                                 KC_TRANSPARENT,   ST_MACRO_16,      ST_MACRO_17,      RGB_MOD,               RGB_TOG,
@@ -115,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [2] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT,        LCTL(KC_1),       LCTL(KC_2),       LCTL(KC_3),     LCTL(KC_4),       LCTL(KC_5),       LCTL(KC_6),                                                                                  LCTL(KC_7),       LCTL(KC_8),       LCTL(KC_9),       KC_AUDIO_MUTE,    KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP,       KC_TRANSPARENT,
-    KC_MEDIA_PREV_TRACK,   LCTL(KC_W),       LCTL(KC_RIGHT),   LCTL(KC_L),     LCTL(KC_R),       KC_TRANSPARENT,   KC_PSCREEN,                                                                                  KC_TRANSPARENT,   ST_MACRO_5,       LCTL(KC_Z),       KC_HOME,          ST_MACRO_6,          ST_MACRO_7,            KC_MEDIA_NEXT_TRACK,
+    KC_MEDIA_PREV_TRACK,   LCTL(KC_W),       LCTL(KC_RIGHT),   LCTL(KC_L),     LCTL(KC_R),       KC_TRANSPARENT,   LGUI(LSFT(KC_S)),                                                                            KC_TRANSPARENT,   ST_MACRO_5,       LCTL(KC_Z),       KC_HOME,          ST_MACRO_6,          ST_MACRO_2,            KC_MEDIA_NEXT_TRACK,
     KC_TRANSPARENT,        KC_END,           LCTL(KC_S),       ST_MACRO_3,     KC_TRANSPARENT,   TD(DANCE_2),                                                                                                                     KC_MS_LEFT,       KC_MS_DOWN,       KC_MS_UP,         KC_MS_RIGHT,         KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
     KC_TRANSPARENT,        KC_TRANSPARENT,   ST_MACRO_11,      ST_MACRO_4,     KC_INSERT,        LCTL(KC_LEFT),    KC_TRANSPARENT,                                                                              KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      LCTL(UK_F),            KC_TRANSPARENT,
     KC_TRANSPARENT,        KC_MS_ACCEL0,     KC_MS_ACCEL1,     KC_MS_ACCEL2,   KC_TRANSPARENT,                                                                                                                                                      KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      KC_TRANSPARENT,        KC_TRANSPARENT,
@@ -142,9 +143,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [4] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,                                                                       KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,
     KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,                                                                       KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,
-    KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,                                                                                                           KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,
+    KC_ESCAPE,        KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,                                                                                                           KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,
     KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,                                                                       TO(0),            KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,
-    KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_SPACE,                                                                                                                                                     TO(1),            KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,
+    KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_SPACE,                                                                                                                                                     KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,
                                                                                                                                 KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT, 
                                                                                                                                                   KC_TRANSPARENT,   KC_TRANSPARENT,   
                                                                                                                       KC_TAB,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT
@@ -386,10 +387,10 @@ uint32_t layer_state_set_user(uint32_t state) {
           rgblight_sethsv_noeeprom(86,255,255);
         }
         break;
-      case 4:
+      case 4: // video games are set to rainbow mode
         if(!disable_layer_color) {
                 rgblight_enable_noeeprom();
-                rgblight_mode_noeeprom(8);
+                rgblight_mode_noeeprom(13); // 8 for breathing rgb - 13 for rainbow sliding (hopefully)
         }
         break;
       default:
