@@ -5,7 +5,7 @@
 #define ORYX_CONFIGURATOR
 #define IGNORE_MOD_TAP_INTERRUPT
 #undef TAPPING_TERM
-#define TAPPING_TERM 130
+#define TAPPING_TERM 125 // default is 200
 #define ERGODOX_LED_30
 
 #define ONESHOT_TAP_TOGGLE 1

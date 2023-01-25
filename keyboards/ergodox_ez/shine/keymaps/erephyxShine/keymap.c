@@ -69,7 +69,8 @@ enum custom_keycodes {
   ST_MACRO_16,
   ST_MACRO_17,
   ST_MACRO_18,
-  ST_MACRO_19
+  ST_MACRO_19,
+  ST_MACRO_20
 };
 
 enum tap_dance_codes {
@@ -77,15 +78,6 @@ enum tap_dance_codes {
   DANCE_1,
   DANCE_2,
 };
-
-bool visualLock = false;
-
-void layerToggle(int layer)
-{ 
-        SEND_STRING(SS_UP(X_LSFT)); 
-        layer_invert(layer); 
-        visualLock = false;
-}
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_ergodox_pretty(
@@ -96,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LCTRL,                     UK_BSLS,   UK_GRV,   KC_LALT,   TT(1),                                                                                                      TT(2),   UK_QUOT,   UK_DQUO,    UK_HASH,    KC_DELETE,
                                                                                                              KC_LPRN,   KC_LBRACKET,   KC_RBRACKET,   KC_RPRN,       
                                                                                                                         KC_LCBR,       KC_RCBR,
-                                                                                                 KC_SPACE,   KC_TAB,    KC_LABK,       KC_RABK,       KC_ENTER,   KC_BSPACE
+                                                                                                  KC_SPACE,  KC_TAB,    KC_LABK,       KC_RABK,       KC_ENTER,   KC_BSPACE
   ),
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -119,10 +111,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_MEDIA_PREV_TRACK,   LCTL(KC_W),       LCTL(KC_RIGHT),   LCTL(KC_L),     LCTL(KC_R),       KC_TRANSPARENT,   LGUI(LSFT(KC_S)),                                                                            KC_TRANSPARENT,   ST_MACRO_5,       LCTL(KC_Z),       KC_HOME,          ST_MACRO_6,          ST_MACRO_2,            KC_MEDIA_NEXT_TRACK,
     KC_TRANSPARENT,        KC_END,           LCTL(KC_S),       ST_MACRO_3,     KC_TRANSPARENT,   TD(DANCE_2),                                                                                                                     KC_MS_LEFT,       KC_MS_DOWN,       KC_MS_UP,         KC_MS_RIGHT,         KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
     KC_TRANSPARENT,        KC_TRANSPARENT,   ST_MACRO_11,      ST_MACRO_4,     KC_INSERT,        LCTL(KC_LEFT),    KC_TRANSPARENT,                                                                              KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      LCTL(UK_F),            KC_TRANSPARENT,
-    KC_TRANSPARENT,        KC_MS_ACCEL0,     KC_MS_ACCEL1,     KC_MS_ACCEL2,   KC_TRANSPARENT,                                                                                                                                                      KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      KC_TRANSPARENT,        KC_TRANSPARENT,
+    KC_TRANSPARENT,        KC_MS_ACCEL0,     KC_MS_ACCEL1,     KC_MS_ACCEL2,   KC_TRANSPARENT,                                                                                                                                                      KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      ST_MACRO_20,           RGB_TOG,
                                                                                                                                    KC_MS_WH_LEFT,         KC_MS_WH_DOWN,    KC_MS_WH_UP,      KC_MS_WH_RIGHT, 
                                                                                                                                                           KC_TRANSPARENT,   KC_TRANSPARENT,   
-                                                                                                                     KC_MS_BTN1,   LCTL(LGUI(KC_LEFT)),   KC_PGUP,          KC_PGDOWN,        LCTL(LGUI(KC_RIGHT)),   KC_MS_BTN2
+                                                                                                                     KC_MS_BTN1,   LCTL(LGUI(KC_LEFT)),   KC_PGDOWN,        KC_PGUP,          LCTL(LGUI(KC_RIGHT)),   KC_MS_BTN2
   ),
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -155,6 +147,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+bool visualLock = false;
+
+int gamesColour = 13;
+
+void layerToggle(int layer)
+{ 
+        SEND_STRING(SS_UP(X_LSFT)); 
+        layer_invert(layer); 
+        visualLock = false;
+}
 
 rgblight_config_t rgblight_config;
 bool disable_layer_color = 0;
@@ -299,6 +301,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return false;
 
+    case ST_MACRO_20:
+    if (record->event.pressed) {
+        if (gamesColour == 13)
+        {
+            gamesColour = 8;
+        }
+        else
+        {
+            gamesColour = 13;
+        }
+        rgblight_enable_noeeprom();
+        rgblight_mode_noeeprom(gamesColour); // 8 for breathing rgb - 13 for rainbow sliding (hopefully)
+    }
+    return false;
+
     case RGB_SLD:
       if (record->event.pressed) {
         rgblight_mode(1);
@@ -390,7 +407,7 @@ uint32_t layer_state_set_user(uint32_t state) {
       case 4: // video games are set to rainbow mode
         if(!disable_layer_color) {
                 rgblight_enable_noeeprom();
-                rgblight_mode_noeeprom(13); // 8 for breathing rgb - 13 for rainbow sliding (hopefully)
+                rgblight_mode_noeeprom(gamesColour); // 8 for breathing rgb - 13 for rainbow sliding (hopefully)
         }
         break;
       default:
