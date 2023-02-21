@@ -70,7 +70,9 @@ enum custom_keycodes {
   ST_MACRO_17,
   ST_MACRO_18,
   ST_MACRO_19,
-  ST_MACRO_20
+  ST_MACRO_20,
+  ST_MACRO_21,
+  ST_MACRO_22
 };
 
 enum tap_dance_codes {
@@ -96,9 +98,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [1] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT,        KC_F1,            KC_F2,            KC_F3,             KC_F4,            KC_F5,            KC_F6,                                                                                  KC_F7,            KC_F8,            KC_F9,            KC_F10,           KC_F11,           KC_F12,                KC_TRANSPARENT,
     KC_MEDIA_PREV_TRACK,   LCTL(KC_W),       LCTL(KC_RIGHT),   LCTL(KC_L),        LCTL(KC_Y),       ST_MACRO_18,      KC_TRANSPARENT,                                                                         KC_TRANSPARENT,   LCTL(KC_C),       LCTL(KC_Z),       ST_MACRO_8,       ST_MACRO_1,       LCTL(KC_V),            KC_MEDIA_NEXT_TRACK,
-    KC_TRANSPARENT,        ST_MACRO_9,       LCTL(KC_S),       LCTL(KC_DELETE),   KC_TRANSPARENT,   TD(DANCE_1),                                                                                                                KC_LEFT,          KC_DOWN,          KC_UP,            KC_RIGHT,         KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
-    KC_TRANSPARENT,        KC_TRANSPARENT,   ST_MACRO_10,      ST_MACRO_0,        ST_MACRO_19,      LCTL(KC_LEFT),    KC_TRANSPARENT,                                                                         KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   LCTL(UK_F),            KC_TRANSPARENT,
-    KC_TRANSPARENT,        KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,    KC_TRANSPARENT,                                                                                                                                                 KC_TRANSPARENT,   ST_MACRO_16,      ST_MACRO_17,      RGB_MOD,               RGB_TOG,
+    KC_TRANSPARENT,        ST_MACRO_9,       ST_MACRO_10,      LCTL(KC_DELETE),   KC_TRANSPARENT,   TD(DANCE_1),                                                                                                                KC_LEFT,          KC_DOWN,          KC_UP,            KC_RIGHT,         KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
+    KC_TRANSPARENT,        KC_TRANSPARENT,   ST_MACRO_21,      ST_MACRO_0,        ST_MACRO_19,      LCTL(KC_LEFT),    KC_TRANSPARENT,                                                                         KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   LCTL(UK_F),            KC_TRANSPARENT,
+    KC_TRANSPARENT,        KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,    KC_TRANSPARENT,                                                                                                                                                 KC_TRANSPARENT,   ST_MACRO_16,      ST_MACRO_17,      ST_MACRO_22,           RGB_TOG,
                                                                                                                                         ST_MACRO_12,      ST_MACRO_13,   KC_TRANSPARENT,   KC_TRANSPARENT,   
                                                                                                                                                           ST_MACRO_14,   KC_TRANSPARENT,   
                                                                                                                       KC_TRANSPARENT,   KC_TRANSPARENT,   ST_MACRO_15,   KC_TRANSPARENT,   KC_TRANSPARENT,   LCTL(KC_BSPACE)
@@ -124,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT,   KC_DELETE,        KC_MS_BTN1,       LALT(LCTL(KC_L)),   LCTL(KC_R),       KC_TRANSPARENT,   KC_TRANSPARENT,                                                                       KC_TRANSPARENT,   LCTL(KC_C),            LCTL(KC_Z),          KC_TRANSPARENT,    KC_TRANSPARENT,        LCTL(KC_V),       KC_TRANSPARENT,
     KC_TRANSPARENT,   KC_TRANSPARENT,   LCTL(KC_S),       KC_MS_BTN2,         LCTL(KC_B),       KC_TRANSPARENT,                                                                                                           KC_MS_LEFT,            KC_MS_DOWN,          KC_MS_UP,          KC_MS_RIGHT,           KC_TRANSPARENT,   RGB_TOG,
     KC_TRANSPARENT,   KC_TRANSPARENT,   LCTL(KC_X),       KC_MS_ACCEL0,       KC_MS_ACCEL1,     KC_MS_ACCEL2,     KC_TRANSPARENT,                                                                       KC_TRANSPARENT,   KC_MEDIA_PREV_TRACK,   KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP,   KC_MEDIA_NEXT_TRACK,   KC_AUDIO_MUTE,    KC_TRANSPARENT,
-    RGB_SPD,          RGB_SPI,          RGB_SAD,          KC_TRANSPARENT,     RGB_SAI,                                                                                                                                                           KC_TRANSPARENT,      KC_TRANSPARENT,    KC_TRANSPARENT,        LED_LEVEL,        RESET,
+    RGB_SPD,          RGB_SPI,          RGB_SAD,          KC_TRANSPARENT,     RGB_SAI,                                                                                                                                                           KC_TRANSPARENT,      KC_TRANSPARENT,    RGB_MOD,               LED_LEVEL,        RESET,
                                                                                                                                   KC_MS_WH_LEFT,    KC_MS_WH_DOWN,    KC_MS_WH_UP,      KC_MS_WH_RIGHT, 
                                                                                                                                                     RGB_VAD,          RGB_VAI,
                                                                                                                 KC_TRANSPARENT,   KC_TRANSPARENT,   RGB_HUD,          RGB_HUI,          KC_TRANSPARENT,   KC_TRANSPARENT
@@ -149,6 +151,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool visualLock = false;
 
+bool gamesColourOnLayer = false;
 int gamesColour = 13;
 
 void layerToggle(int layer)
@@ -309,11 +312,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         else
         {
-            gamesColour = 13;
+            gamesColour = 13; 
         }
         rgblight_enable_noeeprom();
         rgblight_mode_noeeprom(gamesColour); // 8 for breathing rgb - 13 for rainbow sliding (hopefully)
     }
+    return false;
+
+    case ST_MACRO_21:
+    if (record->event.pressed) {
+        SEND_STRING(SS_LSFT(SS_TAP(X_RIGHT)) SS_DELAY(50) SS_LCTRL(SS_TAP(X_X)) SS_DELAY(50) SS_TAP(X_RIGHT));
+    }
+    return false;
+
+    case ST_MACRO_22:
+    if (record->event.pressed)
+    {
+        gamesColourOnLayer = !gamesColourOnLayer;
+    }
+    rgblight_enable_noeeprom();
+    rgblight_mode_noeeprom(gamesColour); // 8 for breathing rgb - 13 for rainbow sliding (hopefully)
     return false;
 
     case RGB_SLD:
@@ -381,20 +399,35 @@ uint32_t layer_state_set_user(uint32_t state) {
           rgblight_sethsv_noeeprom(213,255,255);
         }
         break;
-      case 1: // nav layer blue
+      case 1: // nav layer lighting
         if(!disable_layer_color) {
           rgblight_enable_noeeprom();
           rgblight_mode_noeeprom(1);
-          // rgblight_sethsv_noeeprom(119,235,255);
-          rgblight_sethsv_range(120,255,255, (uint8_t)RGBLED_NUM / 2, (uint8_t)RGBLED_NUM);
+          if (gamesColourOnLayer)
+          {
+              rgblight_mode(gamesColour); // left half RGB (in theory) 
+              rgblight_sethsv_range(213,255,255, 0, (uint8_t)RGBLED_NUM / 2); // right half pink
+          }
+          else
+          {
+              rgblight_sethsv_range(120,255,255, (uint8_t)RGBLED_NUM / 2, (uint8_t)RGBLED_NUM); // left half CYAN
+          }
         }
         break;
-      case 2: // mouse layer blue
+      case 2: // mouse layer lighting
         if(!disable_layer_color) {
           rgblight_enable_noeeprom();
           rgblight_mode_noeeprom(1);
-          // rgblight_sethsv_noeeprom(119,235,255);
-          rgblight_sethsv_range(120,255,255, 0, (uint8_t)RGBLED_NUM / 2);
+          if (gamesColourOnLayer)
+          {
+              rgblight_mode(gamesColour); // right half RGB (in theory)
+              rgblight_sethsv_range(213,255,255, (uint8_t)RGBLED_NUM / 2, (uint8_t)RGBLED_NUM); // left half pink 
+              // sort of works but doesn't override
+          }
+          else
+          {
+              rgblight_sethsv_range(120,255,255, 0, (uint8_t)RGBLED_NUM / 2); // right half cyan
+          }
         }
         break;
       case 3: // editing green
