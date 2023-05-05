@@ -123,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [3] = LAYOUT_ergodox_pretty(
     RGB_HUD,          KC_KP_1,          KC_KP_2,          KC_KP_3,            KC_KP_4,          KC_KP_5,          KC_KP_6,                                                                              KC_KP_7,          KC_KP_8,               KC_KP_9,             KC_KP_0,           KC_TRANSPARENT,        KC_NUMLOCK,       RGB_HUI,
     RGB_SAD,          KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,     KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,                                                                       KC_TRANSPARENT,   KC_TRANSPARENT,        KC_TRANSPARENT,      KC_TRANSPARENT,    KC_TRANSPARENT,        KC_TRANSPARENT,   RGB_SAI,
-    KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,     KC_TRANSPARENT,   KC_TRANSPARENT,                                                                                                           KC_TRANSPARENT,        KC_TRANSPARENT,      KC_TRANSPARENT,    KC_TRANSPARENT,        RGB_MOD,          KC_TRANSPARENT,
+    KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,     KC_TRANSPARENT,   KC_TRANSPARENT,                                                                                                           KC_TRANSPARENT,        KC_TRANSPARENT,      KC_TRANSPARENT,    KC_TRANSPARENT,        RGB_MOD,          TO(5),
     KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,     KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,                                                                       KC_TRANSPARENT,   KC_TRANSPARENT,        KC_TRANSPARENT,      KC_TRANSPARENT,    KC_TRANSPARENT,        KC_TRANSPARENT,   KC_TRANSPARENT,
     KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,     KC_TRANSPARENT,                                                                                                                                                    KC_TRANSPARENT,      KC_TRANSPARENT,    KC_TRANSPARENT,        LED_LEVEL,        RESET,
                                                                                                                                   KC_MS_WH_LEFT,    KC_MS_WH_DOWN,    KC_MS_WH_UP,      KC_MS_WH_RIGHT, 
@@ -142,6 +142,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                                                                 KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT, 
                                                                                                                                                   KC_TRANSPARENT,   KC_TRANSPARENT,   
                                                                                                                       KC_TAB,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT
+  ),
+
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  [5] = LAYOUT_ergodox_pretty(
+    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                                         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                                         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                                                           KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                                         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                                                                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   TO(0),
+                                                                              KC_NO,   KC_NO,   KC_NO,   KC_NO, 
+                                                                                       KC_NO,   KC_NO,   
+                                                                     KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO
   ),
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -363,8 +376,7 @@ uint32_t layer_state_set_user(uint32_t state) {
         ergodox_right_led_3_on();
         break;
       case 5:
-        ergodox_right_led_1_on();
-        ergodox_right_led_3_on();
+        ergodox_right_led_2_on();
         break;
       case 6:
         ergodox_right_led_2_on();
@@ -413,6 +425,12 @@ uint32_t layer_state_set_user(uint32_t state) {
         if(!disable_layer_color) {
                 rgblight_enable_noeeprom();
                 rgblight_mode_noeeprom(gamesColour); // 8 for breathing rgb - 13 for rainbow sliding (hopefully)
+        }
+        break;
+      case 5: // disable RGB for off mode
+        if(!disable_layer_color) {
+            rgblight_enable_noeeprom();
+            rgblight_sethsv_noeeprom(0,0,0);
         }
         break;
       default:
