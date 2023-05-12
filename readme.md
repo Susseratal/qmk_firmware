@@ -18,7 +18,7 @@ You can request changes by making a fork and opening a [pull request](https://gi
 
 * [ErgoDox EZ Default](/keyboards/ergodox_ez)
 * [ErgoDox EZ Shine](/keyboards/ergodox_ez/shine)
-* [ErgoDox EZ Glow](/keyboards/ergodox_ez/glow) // I've not been able to test this one, so if you choose to test this, please get in touch so I can make sure everything works
+* [ErgoDox EZ Glow](/keyboards/ergodox_ez/glow) 
 
 ## Only default keymaps available
 
