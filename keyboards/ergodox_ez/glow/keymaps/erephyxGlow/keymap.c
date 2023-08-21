@@ -168,6 +168,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+int gamesColour = 8;
+
 extern rgb_config_t rgb_matrix_config;
 
 void keyboard_post_init_user(void) {
@@ -390,7 +392,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         rgblight_mode(1);
       }
       return false;
-    case HSV_0_0_255:
+    case HSV_0_0_255: 
       if (record->event.pressed) {
           rgblight_mode(1);
           rgblight_sethsv(0,0,255);

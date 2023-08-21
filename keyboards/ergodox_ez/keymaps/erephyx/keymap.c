@@ -313,35 +313,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case ST_MACRO_20:
     if (record->event.pressed) {
-        if (gamesColour == 13)
-        {
-            gamesColour = 8;
-        }
-        else
-        {
-            gamesColour = 13; 
-        }
-        rgblight_enable_noeeprom();
-        rgblight_mode_noeeprom(gamesColour); // 8 for breathing rgb - 13 for rainbow sliding (hopefully)
     }
     return false;
 
     case ST_MACRO_21:
     if (record->event.pressed) {
         SEND_STRING(SS_LSFT(SS_TAP(X_RIGHT)) SS_DELAY(50) SS_LCTRL(SS_TAP(X_X)) SS_DELAY(50) SS_TAP(X_RIGHT));
-    }
-    return false;
-
-    case ST_MACRO_19:
-    if (record->event.pressed) {
-            if (visualLock == false) {
-                    SEND_STRING(SS_DOWN(X_LSFT));
-                    visualLock = true;
-            }
-            else {
-                    SEND_STRING(SS_UP(X_LSFT));
-                    visualLock = false;
-            }
     }
     return false;
   }

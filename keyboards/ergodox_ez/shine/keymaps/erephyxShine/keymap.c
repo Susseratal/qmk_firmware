@@ -167,9 +167,9 @@ int gamesColour = 13;
 
 void layerToggle(int layer)
 { 
+        visualLock = false;
         SEND_STRING(SS_UP(X_LSFT)); 
         layer_invert(layer); 
-        visualLock = false;
 }
 
 rgblight_config_t rgblight_config;
@@ -307,10 +307,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (visualLock == false) {
                     SEND_STRING(SS_DOWN(X_LSFT));
                     visualLock = true;
+                    ergodox_right_led_2_on();
             }
             else {
                     SEND_STRING(SS_UP(X_LSFT));
                     visualLock = false;
+                    ergodox_right_led_2_off();
             }
     }
     return false;
@@ -347,6 +349,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         disable_layer_color ^= 1;
       }
       return false;
+
+    case KC_LSHIFT:
+      if (record->event.pressed) {
+          visualLock = false;
+          ergodox_right_led_2_off();
+      }
+
   }
   return true;
 }
@@ -357,7 +366,11 @@ uint32_t layer_state_set_user(uint32_t state) {
 
     ergodox_board_led_off();
     ergodox_right_led_1_off();
-    ergodox_right_led_2_off();
+
+    if (!visualLock) {
+        ergodox_right_led_2_off();
+    }
+
     ergodox_right_led_3_off();
     switch (layer) {
       case 1:
