@@ -181,8 +181,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case ST_MACRO_0:
     if (record->event.pressed) { // clear to the end of the line
-      SEND_STRING( SS_LSFT(SS_TAP(X_END)) SS_DELAY(60) SS_TAP(X_BSPACE));
-      layerToggle(1);
+        SEND_STRING(SS_LSFT(SS_LCTL(SS_TAP(X_DEL))));
+        layerToggle(1);
     }
     return false;
 
@@ -201,14 +201,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case ST_MACRO_3:
     if (record->event.pressed) { // delete a whole line
-      SEND_STRING(SS_TAP(X_HOME) SS_DELAY(60) SS_LSFT(SS_TAP(X_END)) SS_DELAY(60) SS_TAP(X_BSPACE));
+        SEND_STRING(SS_TAP(X_HOME) SS_DELAY(60) SS_LSFT(SS_LCTL(SS_TAP(X_DEL))));
     }
     break;
 
     case ST_MACRO_4:
     if (record->event.pressed) { // clear a whole line and then go into insert mode
-      SEND_STRING( SS_TAP(X_HOME) SS_DELAY(60) SS_LSFT(SS_TAP(X_END)) SS_DELAY(60) SS_TAP(X_BSPACE));
-      layerToggle(2);
+        SEND_STRING(SS_TAP(X_HOME) SS_DELAY(60) SS_LSFT(SS_LCTL(SS_TAP(X_DEL))));
+        layerToggle(2);
     }
     return false;
     
@@ -373,95 +373,97 @@ uint32_t layer_state_set_user(uint32_t state) {
 
     ergodox_right_led_3_off();
     switch (layer) {
-      case 1:
+    case 1:
         ergodox_right_led_1_on();
         break;
-      case 2:
+    case 2:
         ergodox_right_led_3_on();
         break;
-      case 3:
+    case 3:
         ergodox_right_led_1_on();
         ergodox_right_led_3_on();
         break;
-      case 4:
-        ergodox_right_led_1_on();
-        ergodox_right_led_2_on();
-        ergodox_right_led_3_on();
-        break;
-      case 5:
-        ergodox_right_led_2_on();
-        break;
-      case 6:
-        ergodox_right_led_2_on();
-        ergodox_right_led_3_on();
-        break;
-      case 7:
+    case 4:
         ergodox_right_led_1_on();
         ergodox_right_led_2_on();
         ergodox_right_led_3_on();
         break;
-      default:
+    case 5:
+        ergodox_right_led_2_on();
+        break;
+    case 6:
+        ergodox_right_led_2_on();
+        ergodox_right_led_3_on();
+        break;
+    case 7:
+        ergodox_right_led_1_on();
+        ergodox_right_led_2_on();
+        ergodox_right_led_3_on();
+        break;
+    default:
         break;
     }
     switch (layer) {
-      case 0: // layer 0 neon pink
-        if(!disable_layer_color) {
-          rgblight_enable_noeeprom();
-          rgblight_mode_noeeprom(1);
-          rgblight_sethsv_noeeprom(213,255,255);
-        }
-        break;
-      case 1: // nav layer lighting
-        if(!disable_layer_color) {
-          rgblight_enable_noeeprom();
-          rgblight_mode_noeeprom(1);
-          rgblight_sethsv_range(120,255,255, (uint8_t)RGBLED_NUM / 2, (uint8_t)RGBLED_NUM); // left half cyan
-          rgblight_sethsv_range(213,255,255, 0, (uint8_t)RGBLED_NUM / 2); // right half pink
-        }
-        break;
-      case 2: // mouse layer lighting
-        if(!disable_layer_color) {
-          rgblight_enable_noeeprom();
-          rgblight_mode_noeeprom(1);
-          rgblight_sethsv_range(213,255,255, (uint8_t)RGBLED_NUM / 2, (uint8_t)RGBLED_NUM); // left half pink
-          rgblight_sethsv_range(120,255,255, 0, (uint8_t)RGBLED_NUM / 2); // right half cyan
-        }
-        break;
-      case 3: // both nav and mouse
-        if(!disable_layer_color) {
-          rgblight_enable_noeeprom();
-          rgblight_mode_noeeprom(1);
-          rgblight_sethsv_noeeprom(120,255,255);
-        }
-        break;
-      case 4: // video games are set to rainbow mode
-        if(!disable_layer_color) {
-                rgblight_enable_noeeprom();
+    case 0: // layer 0 neon pink
+        if(!disable_layer_color) { 
+            rgblight_enable_noeeprom();
+            if(gamesColour == 8) {
                 rgblight_mode_noeeprom(gamesColour); // 8 for breathing rgb - 13 for rainbow sliding (hopefully)
+            }
+            else {
+                rgblight_mode_noeeprom(1);
+                rgblight_sethsv_noeeprom(213,255,255);
+            }
         }
         break;
-      case 5: // disable RGB for off mode
+    case 1: // nav layer lighting
+        if(!disable_layer_color) {
+            rgblight_enable_noeeprom();
+            rgblight_mode_noeeprom(1);
+            rgblight_sethsv_range(120,255,255, (uint8_t)RGBLED_NUM / 2, (uint8_t)RGBLED_NUM); // left half cyan
+            rgblight_sethsv_range(213,255,255, 0, (uint8_t)RGBLED_NUM / 2); // right half pink
+        }
+        break;
+    case 2: // mouse layer lighting
+        if(!disable_layer_color) {
+            rgblight_enable_noeeprom();
+            rgblight_mode_noeeprom(1);
+            rgblight_sethsv_range(213,255,255, (uint8_t)RGBLED_NUM / 2, (uint8_t)RGBLED_NUM); // left half pink
+            rgblight_sethsv_range(120,255,255, 0, (uint8_t)RGBLED_NUM / 2); // right half cyan
+        }
+        break;
+    case 3: // both nav and mouse
+        if(!disable_layer_color) {
+            rgblight_enable_noeeprom();
+            rgblight_mode_noeeprom(1);
+            rgblight_sethsv_noeeprom(120,255,255);
+        }
+        break;
+    case 4: // video games are set to rainbow mode
+        if(!disable_layer_color) {
+            rgblight_enable_noeeprom();
+            rgblight_mode_noeeprom(gamesColour); // 8 for breathing rgb - 13 for rainbow sliding (hopefully)
+        }
+        break;
+    case 5: // disable RGB for off mode
         if(!disable_layer_color) {
             rgblight_enable_noeeprom();
             rgblight_sethsv_noeeprom(0,0,0);
         }
         break;
-      default:
+    default:
         if(!disable_layer_color) {
-          rgblight_config.raw = eeconfig_read_rgblight();
-          if(rgblight_config.enable == true) {
-            rgblight_enable();
-            rgblight_mode(rgblight_config.mode);
-            rgblight_sethsv(rgblight_config.hue, rgblight_config.sat, rgblight_config.val);
-          }
-          else {
-            rgblight_disable();
-          }
+            rgblight_config.raw = eeconfig_read_rgblight();
+            if(rgblight_config.enable == true) {
+                rgblight_enable();
+                rgblight_mode(rgblight_config.mode);
+                rgblight_sethsv(rgblight_config.hue, rgblight_config.sat, rgblight_config.val);
+            }
+        else { rgblight_disable(); }
         }
         break;
     }
     return state;
-
 };
 
 void keyboard_post_init_user(void) {
