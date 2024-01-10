@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [1] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT,        KC_F1,            KC_F2,            KC_F3,             KC_F4,            KC_F5,            KC_F6,                                                                                  KC_F7,            KC_F8,            KC_F9,            KC_F10,           KC_F11,           KC_F12,                KC_TRANSPARENT,
-    KC_MEDIA_PREV_TRACK,   LCTL(KC_W),       LCTL(KC_RIGHT),   LCTL(KC_L),        LCTL(KC_Y),       ST_MACRO_18,      KC_TRANSPARENT,                                                                         KC_TRANSPARENT,   LCTL(KC_C),       LCTL(KC_Z),       ST_MACRO_8,       ST_MACRO_1,       LCTL(KC_V),            KC_MEDIA_NEXT_TRACK,
+    KC_MEDIA_PREV_TRACK,   ST_MACRO_11,      LCTL(KC_RIGHT),   LCTL(KC_L),        LCTL(KC_Y),       ST_MACRO_18,      KC_TRANSPARENT,                                                                         KC_TRANSPARENT,   LCTL(KC_C),       LCTL(KC_Z),       ST_MACRO_8,       ST_MACRO_1,       LCTL(KC_V),            KC_MEDIA_NEXT_TRACK,
     KC_TRANSPARENT,        ST_MACRO_9,       ST_MACRO_10,      LCTL(KC_DELETE),   KC_TRANSPARENT,   TD(DANCE_1),                                                                                                                KC_LEFT,          KC_DOWN,          KC_UP,            KC_RIGHT,         KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
     KC_TRANSPARENT,        KC_TRANSPARENT,   ST_MACRO_21,      ST_MACRO_0,        ST_MACRO_19,      LCTL(KC_LEFT),    KC_TRANSPARENT,                                                                         KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   LCTL(UK_F),            KC_TRANSPARENT,
     KC_TRANSPARENT,        KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,    KC_TRANSPARENT,                                                                                                                                                 MO(3),            ST_MACRO_16,      ST_MACRO_17,      ST_MACRO_20,           RGB_TOG,
@@ -108,10 +108,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   [2] = LAYOUT_ergodox_pretty(
-    KC_TRANSPARENT,        LCTL(KC_1),       LCTL(KC_2),       LCTL(KC_3),     LCTL(KC_4),       LCTL(KC_5),       LCTL(KC_6),                                                                                  LCTL(KC_7),       LCTL(KC_8),       LCTL(KC_9),       KC_AUDIO_MUTE,    KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP,       KC_TRANSPARENT,
+    KC_TRANSPARENT,        KC_F13,           KC_F14,           KC_F15,         KC_F16,           KC_F17,           KC_F18,                                                                                      KC_F19,           KC_F20,           KC_F21,           KC_AUDIO_MUTE,    KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP,       KC_TRANSPARENT,
     KC_MEDIA_PREV_TRACK,   LCTL(KC_W),       LCTL(KC_RIGHT),   LCTL(KC_L),     LCTL(KC_R),       KC_TRANSPARENT,   LGUI(LSFT(KC_S)),                                                                            KC_TRANSPARENT,   ST_MACRO_5,       LCTL(KC_Z),       KC_HOME,          ST_MACRO_6,          ST_MACRO_2,            KC_MEDIA_NEXT_TRACK,
     KC_TRANSPARENT,        KC_END,           LCTL(KC_S),       ST_MACRO_3,     KC_TRANSPARENT,   TD(DANCE_2),                                                                                                                     KC_MS_LEFT,       KC_MS_DOWN,       KC_MS_UP,         KC_MS_RIGHT,         KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
-    KC_TRANSPARENT,        KC_TRANSPARENT,   ST_MACRO_11,      ST_MACRO_4,     KC_INSERT,        LCTL(KC_LEFT),    KC_TRANSPARENT,                                                                              KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      LCTL(UK_F),            KC_TRANSPARENT,
+    KC_TRANSPARENT,        KC_TRANSPARENT,   KC_TRANSPARENT,   ST_MACRO_4,     KC_INSERT,        LCTL(KC_LEFT),    KC_TRANSPARENT,                                                                              KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      LCTL(UK_F),            KC_TRANSPARENT,
     KC_TRANSPARENT,        KC_MS_ACCEL0,     KC_MS_ACCEL1,     KC_MS_ACCEL2,   MO(3),                                                                                                                                                               KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      ST_MACRO_20,           RGB_TOG,
                                                                                                                                    KC_MS_WH_LEFT,         KC_MS_WH_DOWN,    KC_MS_WH_UP,      KC_MS_WH_RIGHT, 
                                                                                                                                                           KC_TRANSPARENT,   KC_TRANSPARENT,   
@@ -181,7 +181,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case ST_MACRO_0:
     if (record->event.pressed) { // clear to the end of the line
-        SEND_STRING(SS_LSFT(SS_LCTL(SS_TAP(X_DEL))));
+        // SEND_STRING(SS_LSFT(SS_LCTL(SS_TAP(X_DEL))));
+        SEND_STRING(SS_LSFT(SS_TAP(X_END)) SS_DELAY(60) SS_TAP(X_DEL));
         layerToggle(1);
     }
     return false;
@@ -232,77 +233,77 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
 
     case ST_MACRO_8:
-    if (record->event.pressed) { // i key macro
+    if (record->event.pressed) { // jump to start of line and layer switch
         SEND_STRING(SS_TAP(X_HOME));
         layerToggle(1);
     }
     return false;
 
     case ST_MACRO_9:
-    if (record->event.pressed) { // a key macro
+    if (record->event.pressed) { // jumpt to end of line and layer switch
         SEND_STRING(SS_TAP(X_END)); 
         layerToggle(1);
     }
     return false;
 
     case ST_MACRO_10:
-    if (record->event.pressed) {
+    if (record->event.pressed) { // delete a letter and layer toggle
         SEND_STRING(SS_TAP(X_DELETE));
         layerToggle(1);
     }
     return false;
 
-    case ST_MACRO_11:
+    case ST_MACRO_11: // Delete to start of the line and layer switch
     if (record->event.pressed) {
-        SEND_STRING(SS_TAP(X_DELETE));
-        layerToggle(2);
+        SEND_STRING(SS_LSFT(SS_TAP(X_HOME)) SS_DELAY(50) SS_TAP(X_DEL));
+        layerToggle(1);
     }
     return false;
 
-    case ST_MACRO_12:
+    case ST_MACRO_12: // Brackets macro -- ()
     if (record->event.pressed) {
         SEND_STRING(SS_LSFT(SS_TAP(X_9)) SS_DELAY(50) SS_LSFT(SS_TAP(X_0)) SS_DELAY(50) SS_TAP(X_LEFT));
     }
     return false;
 
-    case ST_MACRO_13:
+    case ST_MACRO_13: // brackets macro -- []
     if (record->event.pressed) {
         SEND_STRING(SS_TAP(X_LBRACKET) SS_DELAY(50) SS_TAP(X_RBRACKET) SS_DELAY(50) SS_TAP(X_LEFT));
     }
     return false;
 
-    case ST_MACRO_14:
+    case ST_MACRO_14: // brackets macro -- {}
     if (record->event.pressed) {
         SEND_STRING(SS_LSFT(SS_TAP(X_LBRACKET)) SS_DELAY(50) SS_LSFT(SS_TAP(X_RBRACKET)) SS_DELAY(50) SS_TAP(X_LEFT));
     }
     return false;
 
-    case ST_MACRO_15:
+    case ST_MACRO_15: // brackets macro -- <>
     if (record->event.pressed) {
         SEND_STRING(SS_LSFT(SS_TAP(X_COMMA)) SS_DELAY(50) SS_LSFT(SS_TAP(X_DOT)) SS_DELAY(50) SS_TAP(X_LEFT));
     }
     return false;
 
-    case ST_MACRO_16:
+    case ST_MACRO_16: // quotes macro ''
     if (record->event.pressed) {
         SEND_STRING(SS_TAP(X_QUOTE) SS_DELAY(50) SS_TAP(X_QUOTE) SS_DELAY(50) SS_TAP(X_LEFT));
     }
     return false;
 
-    case ST_MACRO_17:
+    case ST_MACRO_17: // quotes macro ""
     if (record->event.pressed) {
         SEND_STRING(SS_LSFT(SS_TAP(X_2)) SS_DELAY(50) SS_LSFT(SS_TAP(X_2)) SS_DELAY(50) SS_TAP(X_LEFT));
     }
     return false;
 
-    case ST_MACRO_18:
+    case ST_MACRO_18: // open a new browser tab, jump to search bar and layer switch -- i never use this one 
     if (record->event.pressed) {
             SEND_STRING(SS_LCTRL(SS_TAP(X_T)) SS_DELAY(50) SS_LCTRL(SS_TAP(X_L))); 
             layerToggle(1);
     }
     return false;
 
-    case ST_MACRO_19:
+    case ST_MACRO_19: // Visual lock activate
     if (record->event.pressed) {
             if (visualLock == false) {
                     SEND_STRING(SS_DOWN(X_LSFT));
@@ -317,7 +318,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return false;
 
-    case ST_MACRO_20:
+    case ST_MACRO_20: // change lighting modes
     if (record->event.pressed) {
         if (gamesColour == 13)
         {
@@ -332,9 +333,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return false;
 
-    case ST_MACRO_21:
+    case ST_MACRO_21: // swap two characters to the right of the cursor
     if (record->event.pressed) {
-        SEND_STRING(SS_LSFT(SS_TAP(X_RIGHT)) SS_DELAY(50) SS_LCTRL(SS_TAP(X_X)) SS_DELAY(50) SS_TAP(X_RIGHT));
+        SEND_STRING(SS_LSFT(SS_TAP(X_RIGHT)) SS_DELAY(50) SS_LCTRL(SS_TAP(X_X)) SS_DELAY(50) SS_TAP(X_RIGHT) SS_DELAY(50) SS_LCTRL(SS_TAP(X_V)));
+        layerToggle(1);
     }
     return false;
 
