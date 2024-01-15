@@ -163,13 +163,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool visualLock = false;
 
+bool layerHeld = false;
+
 int gamesColour = 13;
 
 void layerToggle(int layer)
 { 
         visualLock = false;
         SEND_STRING(SS_UP(X_LSFT)); 
-        layer_invert(layer); 
+        if(layerHeld == false) {
+            layer_invert(layer); 
+        }
 }
 
 rgblight_config_t rgblight_config;
@@ -358,6 +362,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           ergodox_right_led_2_off();
       }
 
+    case TT(1):
+      if (record->tap.count > 0) {
+          layerHeld = false;
+      }
+      else {
+          layerHeld = true;
+      }
   }
   return true;
 }
