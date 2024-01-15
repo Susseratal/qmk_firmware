@@ -1,26 +1,11 @@
-# ZSA's fork of QMK Firmware
-
-[![Current Version](https://img.shields.io/github/tag/zsa/qmk_firmware.svg)](https://github.com/zsa/qmk_firmware/tags)
-[![Build firmware](https://github.com/zsa/qmk_firmware/actions/workflows/build.yml/badge.svg)](https://github.com/zsa/qmk_firmware/actions/workflows/build.yml)
-[![Unit Tests](https://github.com/zsa/qmk_firmware/actions/workflows/unit_test.yml/badge.svg)](https://github.com/zsa/qmk_firmware/actions/workflows/unit_test.yml)
-[![GitHub contributors](https://img.shields.io/github/contributors/zsa/qmk_firmware.svg)](https://github.com/zsa/qmk_firmware/pulse/monthly)
-[![GitHub forks](https://img.shields.io/github/forks/zsa/qmk_firmware.svg?style=social&label=Fork)](https://github.com/zsa/qmk_firmware/)
-
-This purpose of this fork is maintain a clean repo that only contains the keyboard code that we need, and as little else as possible.  This is to keep it lightweight, since we only need a couple of keyboards. This is the repo that the EZ Configurator will pull from.
-## Documentation
-
-* [See the official documentation on docs.qmk.fm](https://docs.qmk.fm)
-
-The docs are powered by [Docsify](https://docsify.js.org/) and hosted on [GitHub](/docs/). They are also viewable offline; see [Previewing the Documentation](https://docs.qmk.fm/#/contributing?id=previewing-the-documentation) for more details.
-
-You can request changes by making a fork and opening a [pull request](https://github.com/qmk/qmk_firmware/pulls), or by clicking the "Edit this page" link at the bottom of any page.
-
+# Iain's fork of QMK Firmware
+This repo is actually forked from [ZSA's fork of QMK](https://github.com/zsa/qmk_firmware) because when I first started out compiling my own firmware, it was on ZSA's Ergodox EZ. I have since merged some layouts from the core QMK repo in order to add compatibility for the Boardwalk style of keyboard. I did it this way because the core QMK fork is so full of different keyboard layouts that instead of forking that repo and going through the work to remerge everything, I've chosen to just update this repo as I need.
 
 ## Supported Keyboards
 
 * [ErgoDox EZ](/keyboards/ergodox_ez/)
-* [Planck EZ](/keyboards/planck/ez)
 * [Moonlander Mark I](/keyboards/moonlander)
+* [Boardwalk](/keyboards/boardwalk)
 
 ## Building
 
@@ -70,7 +55,3 @@ QMK is developed and maintained by Jack Humbert of OLKB with contributions from 
 4. Commit update
    * Include commit info in `[changelog.md](changelog.md)`
 5. Open Pull request, and include information about the commit
-
-## Strategy
-
-To keep PRs small and easier to test, they should ideally be 1:1 with commits from QMK Firmware master. They should only group commits if/when it makes sense. Such as multiple commits for a specific feature (split RGB support, for instance)
