@@ -101,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_MEDIA_PREV_TRACK,   LCTL(KC_W),       LCTL(KC_RIGHT),   LCTL(KC_L),       LCTL(KC_R),       KC_TRANSPARENT,   LGUI(LSFT(KC_S)),                                                                            KC_TRANSPARENT,   ST_YANK_LINE,     LCTL(KC_Z),       KC_HOME,          KC_TRANSPARENT,      ST_NEW_LINE_PASTE,     KC_MEDIA_NEXT_TRACK,
     KC_TRANSPARENT,        KC_END,           LCTL(KC_S),       ST_CLEAR_LINE,    KC_TRANSPARENT,   LCTL(KC_HOME),                                                                                                                   KC_MS_LEFT,       KC_MS_DOWN,       KC_MS_UP,         KC_MS_RIGHT,         KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
     KC_TRANSPARENT,        KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_INSERT,        LCTL(KC_LEFT),    KC_TRANSPARENT,                                                                              KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      LCTL(UK_F),            KC_TRANSPARENT,
-    KC_TRANSPARENT,        KC_MS_ACCEL0,     KC_MS_ACCEL1,     KC_MS_ACCEL2,     MO(3),                                                                                                                                                               KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      KC_TRANSPARENT,        RGB_TOG,
+    KC_TRANSPARENT,        KC_MS_ACCEL0,     KC_MS_ACCEL1,     KC_MS_ACCEL2,     MO(3),                                                                                                                                                               KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      ST_RGB_TOG,            RGB_TOG,
                                                                                                                                    KC_MS_WH_LEFT,         KC_MS_WH_DOWN,    KC_MS_WH_UP,      KC_MS_WH_RIGHT, 
                                                                                                                                                           KC_TRANSPARENT,   KC_TRANSPARENT,   
                                                                                                                      KC_MS_BTN1,   LCTL(LGUI(KC_LEFT)),   KC_PGDOWN,        KC_PGUP,          LCTL(LGUI(KC_RIGHT)),   KC_MS_BTN2
@@ -158,9 +158,12 @@ void layerToggle(int layer)
 { 
         visualLock = false;
         SEND_STRING(SS_UP(X_LSFT)); 
+        layer_invert(layer);
+        /*
         if(layerHeld == false) {
             layer_invert(layer); 
         }
+        */
 }
 
 rgblight_config_t rgblight_config;
@@ -168,7 +171,7 @@ bool disable_layer_color = 0;
 
 bool suspended = false;
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) { 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case ST_LINE_START:
     if(record->event.pressed) {
@@ -290,12 +293,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case ST_RGB_TOG: // change lighting modes
     if (record->event.pressed) {
-        if (gamesColour == 13)
-        {
+        if (gamesColour == 13) {
             gamesColour = 8;
         }
-        else
-        {
+        else {
             gamesColour = 13; 
         }
         rgblight_enable_noeeprom();
@@ -321,13 +322,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           ergodox_right_led_2_off();
       }
 
-    case TT(1):
-      if (record->tap.count > 0) {
+      /*
+    case TT(1): // figure out how to make it so record->tap.count only applies to specifically TT(1)
+      if (record->tap.count > 0) { 
           layerHeld = false;
       }
       else {
           layerHeld = true;
       }
+      */
   }
   return true;
 }

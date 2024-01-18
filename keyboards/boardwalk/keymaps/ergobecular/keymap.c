@@ -1,47 +1,24 @@
 #include QMK_KEYBOARD_H
 #include "keymap_uk.h"
 
-// Layer shorthand
-/*
-enum layer_names {
-    _BASE,
-    _NAV,
-    _MOUSE,
+enum custom_keycodes { 
+    ST_LINE_START,
+    ST_LINE_END,
+    ST_CLEAR_LINE,
+    ST_CLEAR_LINE_START,
+    ST_CLEAR_LINE_END,
+    ST_NEW_LINE,
+    ST_NEW_LINE_PASTE,
+    ST_YANK_LINE,
+    ST_DEL_CHAR,
+    ST_CHAR_SWAP,
+    ST_PAREN_PAIR,
+    ST_BOX_PAIR,
+    ST_CHEVRON_PAIR,
+    ST_SINGLE_QUOTE_PAIR,
+    ST_DOUBLE_QUOTE_PAIR,
+    ST_VISUAL_LOCK
 };
-*/
-
-enum custom_keycodes { // TODO RENAME THESE TO THINGS MORE USEFUL
-    ST_MACRO_0,
-    ST_MACRO_1,
-    ST_MACRO_2,
-    ST_MACRO_3,
-    ST_MACRO_4,
-    ST_MACRO_5,
-    ST_MACRO_6,
-    ST_MACRO_7,
-    ST_MACRO_8,
-    ST_MACRO_9,
-    ST_MACRO_10,
-    ST_MACRO_11,
-    ST_MACRO_12,
-    ST_MACRO_13,
-    ST_MACRO_14,
-    ST_MACRO_15,
-    ST_MACRO_16,
-    ST_MACRO_17,
-    ST_MACRO_18,
-    ST_MACRO_19,
-    ST_MACRO_20,
-    ST_MACRO_21
-};
-
-/*
-enum tap_dance_codes {
-    DANCE_0,
-    DANCE_1,
-    DANCE_2
-};
-*/
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -80,11 +57,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * '-----------------------------------------------------------------------------------------------------------------------------------'
      */
     [1] = LAYOUT_ortho_2x2u(
-        KC_TRANSPARENT,        KC_F1,            KC_F2,            KC_F3,            KC_F4,            KC_F5,            KC_F6,     KC_F7,     KC_F8,        KC_F9,        KC_F10,    KC_F11,    KC_F12,                KC_TRANSPARENT,
-        LCTL(LGUI(KC_LEFT)),   _______,          LCTL(KC_RIGHT),   LCTL(KC_L),       LCTL(KC_Y),       KC_TRANSPARENT,   _______,   _______,   LCTL(KC_C),   LCTL(KC_Z),   _______,   _______,   _______,               LCTL(LGUI(KC_RIGHT)),
-        TO(0),                 _______,          _______,          _______,          KC_TRANSPARENT,   LCTL(KC_END),     _______,   _______,   KC_LEFT,      KC_DOWN,      KC_UP,     KC_RIGHT,  KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
-        KC_TRANSPARENT,        _______,          _______,          _______,          _______,          _______,          _______,   _______,   _______,      _______,      _______,   _______,   LCTL(KC_F),            KC_TRANSPARENT,
-        KC_TRANSPARENT,        KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   _______,                KC_TAB,                      KC_ENTER,          _______,      _______,   _______,   KC_TRANSPARENT,        KC_TRANSPARENT
+        KC_TRANSPARENT,        KC_F1,                 KC_F2,            KC_F3,               KC_F4,            KC_F5,            KC_F6,             KC_F7,            KC_F8,            KC_F9,            KC_F10,                 KC_F11,                 KC_F12,                KC_TRANSPARENT,
+        KC_MEDIA_PREV_TRACK,   ST_CLEAR_LINE_START,   LCTL(KC_RIGHT),   LCTL(KC_L),          LCTL(KC_Y),       KC_TRANSPARENT,   ST_PAREN_PAIR,     CAPS_WORD,        LCTL(KC_C),       LCTL(KC_Z),       ST_LINE_START,          ST_NEW_LINE,            LCTL(KC_V),            KC_MEDIA_NEXT_TRACK,
+        TO(0),                 ST_LINE_END,           ST_DEL_CHAR,      LCTL(KC_DELETE),     KC_TRANSPARENT,   LCTL(KC_END),     ST_BOX_PAIR,       KC_TRANSPARENT,   KC_LEFT,          KC_DOWN,          KC_UP,                  KC_RIGHT,               KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
+        KC_TRANSPARENT,        KC_TRANSPARENT,        ST_CHAR_SWAP,     ST_CLEAR_LINE_END,   ST_VISUAL_LOCK,   LCTL(KC_LEFT),    ST_CHEVRON_PAIR,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,         KC_TRANSPARENT,         LCTL(KC_F),            KC_TRANSPARENT,
+        KC_TRANSPARENT,        KC_TRANSPARENT,        KC_TRANSPARENT,   KC_TRANSPARENT,      KC_TRANSPARENT,                KC_TAB,                          KC_ENTER,                  KC_TRANSPARENT,   ST_SINGLE_QUOTE_PAIR,   ST_DOUBLE_QUOTE_PAIR,   KC_TRANSPARENT,        KC_TRANSPARENT
     ),
 
     /* Mouse Layer
@@ -101,11 +78,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * '-----------------------------------------------------------------------------------------------------------------------------'
      */
     [2] = LAYOUT_ortho_2x2u(
-        KC_TRANSPARENT,   KC_F13,    KC_F14,    KC_F15,    KC_F16,    KC_F17,    KC_F18,    KC_F19,    KC_F20,    KC_F21,    KC_AUDIO_MUTE,    KC_AUDIO_VOL_DOWN,    KC_AUDIO_VOL_UP,    KC_TRANSPARENT,
-        _______,          _______,   _______,   _______,   _______,   _______,   _______,   _______,   _______,   _______,   _______,          _______,              _______,            _______,
-        TO(0),            _______,   _______,   _______,   _______,   _______,   _______,   _______,   _______,   _______,   _______,          _______,              _______,            _______,
-        _______,          _______,   _______,   _______,   _______,   _______,   _______,   _______,   _______,   _______,   _______,          _______,              _______,            _______,
-        _______,          _______,   _______,   _______,   _______,         _______,              _______,        _______,   _______,          _______,              _______,            _______
+        KC_TRANSPARENT,        KC_F13,           KC_F14,         KC_F15,         KC_F16,           KC_F17,           KC_F18,             KC_F19,           KC_F20,           KC_F21,           KC_AUDIO_MUTE,    KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP,       KC_TRANSPARENT,
+        LCTL(LGUI(KC_LEFT)),   KC_KP_7,          KC_KP_8,        KC_KP_9,        KC_TRANSPARENT,   KC_TRANSPARENT,   LGUI(LSFT(KC_S)),   KC_PSCREEN,       KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      KC_NUMLOCK,            LCTL(LGUI(KC_RIGHT)),
+        TO(0),                 KC_KP_4,          KC_KP_5,        KC_KP_6,        KC_KP_0,          KC_TRANSPARENT,   KC_MS_WH_DOWN,      KC_MS_WH_UP,      KC_MS_LEFT,       KC_MS_DOWN,       KC_MS_UP,         KC_MS_RIGHT,         KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
+        KC_TRANSPARENT,        KC_KP_1,          KC_KP_2,        KC_KP_3,        KC_TRANSPARENT,   KC_TRANSPARENT,   KC_MS_WH_LEFT,      KC_MS_WH_RIGHT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      KC_TRANSPARENT,        KC_TRANSPARENT,
+        KC_TRANSPARENT,        KC_TRANSPARENT,   KC_MS_ACCEL0,   KC_MS_ACCEL1,   KC_MS_ACCEL2,                 KC_MS_BTN1,                         KC_MS_BTN2,               KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      KC_TRANSPARENT,        RESET
     )
 };
 
@@ -122,36 +99,122 @@ void layerToggle(int layer) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch(keycode) {
-        case ST_MACRO_0:
-            if (record->event.pressed) {
-            }
-            return false;
+        case ST_LINE_START:
+        if(record->event.pressed) {
+            SEND_STRING(SS_TAP(X_HOME));
+            layerToggle(1);
+        }
+        return false;
 
-        case ST_MACRO_1:
-            if (record->event.pressed) {
-            }
-            return false;
+        case ST_LINE_END:
+        if (record->event.pressed) { // jumpt to end of line and layer switch
+            SEND_STRING(SS_TAP(X_END)); 
+            layerToggle(1);
+        }
+        return false;
 
-        case ST_MACRO_2:
-            if (record->event.pressed) {
-            }
-            return false;
+        case ST_CLEAR_LINE:
+        if (record->event.pressed) { // delete a whole line
+            SEND_STRING(SS_TAP(X_HOME) SS_DELAY(60) SS_LSFT(SS_TAP(X_END)) SS_DELAY(60) SS_TAP(X_DEL));
+        }
+        break;
 
-        case ST_MACRO_3:
-            if (record->event.pressed) {
-            }
-            return false;
+        case ST_CLEAR_LINE_START: // Delete to start of the line and layer switch
+        if (record->event.pressed) {
+            SEND_STRING(SS_LSFT(SS_TAP(X_HOME)) SS_DELAY(60) SS_TAP(X_DEL));
+            layerToggle(1);
+        }
+        return false;
 
-        case ST_MACRO_4:
-            if (record->event.pressed) {
-            }
-            return false;
+        case ST_CLEAR_LINE_END:
+        if (record->event.pressed) { // clear to the end of the line
+            SEND_STRING(SS_LSFT(SS_TAP(X_END)) SS_DELAY(60) SS_TAP(X_DEL));
+            layerToggle(1);
+        }
+        return false;
+
+        case ST_NEW_LINE:
+        if (record->event.pressed) { // insert on a new line
+          SEND_STRING(SS_TAP(X_END) SS_DELAY(60) SS_TAP(X_ENTER));
+          layerToggle(1);
+        }
+        return false;
+
+        case ST_NEW_LINE_PASTE:
+        if (record->event.pressed) { // paste on the line below
+          SEND_STRING(SS_TAP(X_END) SS_DELAY(60) SS_TAP(X_ENTER) SS_DELAY(60) SS_LCTL(SS_TAP(X_V)));
+        }
+        break;
+        
+        case ST_YANK_LINE:
+        if (record->event.pressed) { // copy the line 
+          SEND_STRING(SS_TAP(X_HOME) SS_DELAY(60) SS_LSFT(SS_TAP(X_END)) SS_DELAY(60) SS_LCTL(SS_TAP(X_C)));
+        }
+        break;
+
+        case ST_DEL_CHAR:
+        if (record->event.pressed) { // delete a letter and layer toggle
+            SEND_STRING(SS_TAP(X_DELETE));
+            layerToggle(1);
+        }
+        return false;
+
+        case ST_CHAR_SWAP: // swap two characters to the right of the cursor
+        if (record->event.pressed) {
+            SEND_STRING(SS_LSFT(SS_TAP(X_RIGHT)) SS_DELAY(60) SS_LCTRL(SS_TAP(X_X)) SS_DELAY(60) SS_TAP(X_RIGHT) SS_DELAY(60) SS_LCTRL(SS_TAP(X_V)));
+            layerToggle(1);
+        }
+        return false;
+
+        case ST_PAREN_PAIR: // Brackets macro -- ()
+        if (record->event.pressed) {
+            SEND_STRING(SS_LSFT(SS_TAP(X_9)) SS_DELAY(60) SS_LSFT(SS_TAP(X_0)) SS_DELAY(60) SS_TAP(X_LEFT));
+        }
+        return false;
+
+        case ST_BOX_PAIR: // brackets macro -- []
+        if (record->event.pressed) {
+            SEND_STRING(SS_TAP(X_LBRACKET) SS_DELAY(60) SS_TAP(X_RBRACKET) SS_DELAY(60) SS_TAP(X_LEFT));
+        }
+        return false;
+
+        case ST_CHEVRON_PAIR: // brackets macro -- <>
+        if (record->event.pressed) {
+            SEND_STRING(SS_LSFT(SS_TAP(X_COMMA)) SS_DELAY(60) SS_LSFT(SS_TAP(X_DOT)) SS_DELAY(60) SS_TAP(X_LEFT));
+        }
+        return false;
+
+        case ST_SINGLE_QUOTE_PAIR: // quotes macro ''
+        if (record->event.pressed) {
+            SEND_STRING(SS_TAP(X_QUOTE) SS_DELAY(60) SS_TAP(X_QUOTE) SS_DELAY(60) SS_TAP(X_LEFT));
+        }
+        return false;
+
+        case ST_DOUBLE_QUOTE_PAIR: // quotes macro ""
+        if (record->event.pressed) {
+            SEND_STRING(SS_LSFT(SS_TAP(X_2)) SS_DELAY(60) SS_LSFT(SS_TAP(X_2)) SS_DELAY(60) SS_TAP(X_LEFT));
+        }
+        return false;
+
+        case ST_VISUAL_LOCK: // Visual lock activate
+        if (record->event.pressed) {
+                if (visualLock == false) {
+                        SEND_STRING(SS_DOWN(X_LSFT));
+                        visualLock = true;
+                }
+                else {
+                        SEND_STRING(SS_UP(X_LSFT));
+                        visualLock = false;
+                }
+        }
+        return false;
 
         case KC_LSHIFT:
             if (record->event.pressed) {
                 visualLock = false;
             }
 
+        /*
         case TT(1):
             if (record->tap.count > 0) {
                 layerHeld = false;
@@ -159,7 +222,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             else {
                 layerHeld = true;
             }
-
+            */
     }
     return true;
 }
