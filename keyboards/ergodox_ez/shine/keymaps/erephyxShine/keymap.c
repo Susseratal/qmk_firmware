@@ -73,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_ergodox_pretty(
     LALT(KC_TAB),                 UK_1,      UK_2,     UK_3,      UK_4,    UK_5,   UK_6,                                                                 UK_7,        UK_8,   UK_9,    UK_0,      KC_MINUS,   KC_EQUAL,   LALT(LSFT(KC_TAB)),
     LCTL(KC_TAB),                 KC_Q,      KC_W,     KC_E,      KC_R,    KC_T,   KC_PSCREEN,                                                           CAPS_WORD,   KC_Y,   KC_U,    KC_I,      KC_O,       KC_P,       KC_MEH,
-    MT(MOD_LCTL,  KC_ESCAPE),     KC_A,      KC_S,     KC_D,      KC_F,    KC_G,                                                                                      KC_H,   KC_J,    KC_K,      KC_L,       UK_SCLN,    KC_LGUI,
+    KC_ESCAPE,                    KC_A,      KC_S,     KC_D,      KC_F,    KC_G,                                                                                      KC_H,   KC_J,    KC_K,      KC_L,       UK_SCLN,    KC_LGUI,
     KC_LSHIFT,                    KC_Z,      KC_X,     KC_C,      KC_V,    KC_B,   TOGGLE_LAYER_COLOR,                                                   TO(4),       KC_N,   KC_M,    UK_COMM,   UK_DOT,     UK_SLSH,    KC_LSHIFT,
     KC_LCTRL,                     UK_BSLS,   UK_GRV,   KC_LALT,   TT(1),                                                                                                      TT(2),   UK_QUOT,   UK_DQUO,    UK_HASH,    KC_DELETE,
                                                                                                              KC_LPRN,   KC_LBRACKET,   KC_RBRACKET,   KC_RPRN,       
@@ -86,9 +86,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [1] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT,        KC_F1,                  KC_F2,            KC_F3,             KC_F4,            KC_F5,            KC_F6,                                                                                  KC_F7,            KC_F8,            KC_F9,            KC_F10,                 KC_F11,                 KC_F12,                KC_TRANSPARENT,
     KC_MEDIA_PREV_TRACK,   ST_CLEAR_LINE_START,    LCTL(KC_RIGHT),   LCTL(KC_L),        LCTL(KC_Y),       KC_TRANSPARENT,   KC_TRANSPARENT,                                                                         KC_TRANSPARENT,   LCTL(KC_C),       LCTL(KC_Z),       ST_LINE_START,          ST_NEW_LINE,            LCTL(KC_V),            KC_MEDIA_NEXT_TRACK,
-    KC_TRANSPARENT,        ST_LINE_END,            ST_DEL_CHAR,      LCTL(KC_DELETE),   KC_TRANSPARENT,   LCTL(KC_END),                                                                                                               KC_LEFT,          KC_DOWN,          KC_UP,                  KC_RIGHT,               KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
+    TO(0),                 ST_LINE_END,            ST_DEL_CHAR,      LCTL(KC_DELETE),   KC_TRANSPARENT,   LCTL(KC_END),                                                                                                               KC_LEFT,          KC_DOWN,          KC_UP,                  KC_RIGHT,               KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
     KC_TRANSPARENT,        KC_TRANSPARENT,         ST_CHAR_SWAP,     ST_CLEAR_LINE_END, ST_VISUAL_LOCK,   LCTL(KC_LEFT),    KC_TRANSPARENT,                                                                         KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,         KC_TRANSPARENT,         LCTL(UK_F),            KC_TRANSPARENT,
-    KC_TRANSPARENT,        KC_TRANSPARENT,         KC_TRANSPARENT,   KC_TRANSPARENT,    KC_TRANSPARENT,                                                                                                                                                 MO(3),            ST_SINGLE_QUOTE_PAIR,   ST_DOUBLE_QUOTE_PAIR,   ST_RGB_TOG,            RGB_TOG,
+    KC_TRANSPARENT,        KC_TRANSPARENT,         KC_TRANSPARENT,   KC_TRANSPARENT,    KC_TRANSPARENT,                                                                                                                                                 TT(3),            ST_SINGLE_QUOTE_PAIR,   ST_DOUBLE_QUOTE_PAIR,   ST_RGB_TOG,            RGB_TOG,
                                                                                                                                         ST_PAREN_PAIR,    ST_BOX_PAIR,       KC_TRANSPARENT,   KC_TRANSPARENT,   
                                                                                                                                                           ST_CURLY_PAIR,     KC_TRANSPARENT,   
                                                                                                                       KC_TRANSPARENT,   KC_TRANSPARENT,   ST_CHEVRON_PAIR,   KC_TRANSPARENT,   KC_TRANSPARENT,   LCTL(KC_BSPACE)
@@ -97,11 +97,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   [2] = LAYOUT_ergodox_pretty(
-    KC_TRANSPARENT,        KC_F13,           KC_F14,           KC_F15,           KC_F16,           KC_F17,           KC_F18,                                                                                      KC_F19,           KC_F20,           KC_F21,           KC_AUDIO_MUTE,    KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP,       KC_TRANSPARENT,
-    KC_MEDIA_PREV_TRACK,   LCTL(KC_W),       LCTL(KC_RIGHT),   LCTL(KC_L),       LCTL(KC_R),       KC_TRANSPARENT,   LGUI(LSFT(KC_S)),                                                                            KC_TRANSPARENT,   ST_YANK_LINE,     LCTL(KC_Z),       KC_HOME,          KC_TRANSPARENT,      ST_NEW_LINE_PASTE,     KC_MEDIA_NEXT_TRACK,
-    KC_TRANSPARENT,        KC_END,           LCTL(KC_S),       ST_CLEAR_LINE,    KC_TRANSPARENT,   LCTL(KC_HOME),                                                                                                                   KC_MS_LEFT,       KC_MS_DOWN,       KC_MS_UP,         KC_MS_RIGHT,         KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
-    KC_TRANSPARENT,        KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_INSERT,        LCTL(KC_LEFT),    KC_TRANSPARENT,                                                                              KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      LCTL(UK_F),            KC_TRANSPARENT,
-    KC_TRANSPARENT,        KC_MS_ACCEL0,     KC_MS_ACCEL1,     KC_MS_ACCEL2,     MO(3),                                                                                                                                                               KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      ST_RGB_TOG,            RGB_TOG,
+    KC_TRANSPARENT,        KC_F13,               KC_F14,           KC_F15,           KC_F16,               KC_F17,           KC_F18,                                                                                      KC_F19,           KC_F20,           KC_F21,           KC_AUDIO_MUTE,    KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP,       KC_TRANSPARENT,
+    KC_MEDIA_PREV_TRACK,   LCTL(LSFT(KC_TAB)),   KC_TRANSPARENT,   LCTL(KC_TAB),     KC_TRANSPARENT,       KC_TRANSPARENT,   LGUI(LSFT(KC_S)),                                                                            KC_TRANSPARENT,   ST_YANK_LINE,     KC_TRANSPARENT,   KC_HOME,          KC_TRANSPARENT,      ST_NEW_LINE_PASTE,     KC_MEDIA_NEXT_TRACK,
+    TO(0),                 KC_END,               LCTL(KC_TAB),     ST_CLEAR_LINE,    LCTL(LSFT(KC_TAB)),   LCTL(KC_HOME),                                                                                                                   KC_MS_LEFT,       KC_MS_DOWN,       KC_MS_UP,         KC_MS_RIGHT,         KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
+    KC_TRANSPARENT,        KC_MS_ACCEL0,         KC_MS_ACCEL1,     KC_MS_ACCEL2,     KC_INSERT,            KC_TRANSPARENT,   KC_TRANSPARENT,                                                                              KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      LCTL(UK_F),            KC_TRANSPARENT,
+    KC_TRANSPARENT,        KC_TRANSPARENT,       KC_TRANSPARENT,   KC_TRANSPARENT,   TT(3),                                                                                                                                                                   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      ST_RGB_TOG,            RGB_TOG,
                                                                                                                                    KC_MS_WH_LEFT,         KC_MS_WH_DOWN,    KC_MS_WH_UP,      KC_MS_WH_RIGHT, 
                                                                                                                                                           KC_TRANSPARENT,   KC_TRANSPARENT,   
                                                                                                                      KC_MS_BTN1,   LCTL(LGUI(KC_LEFT)),   KC_PGDOWN,        KC_PGUP,          LCTL(LGUI(KC_RIGHT)),   KC_MS_BTN2
@@ -110,12 +110,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   [3] = LAYOUT_ergodox_pretty(
-    RGB_HUD,          KC_KP_1,          KC_KP_2,          KC_KP_3,            KC_KP_4,          KC_KP_5,          KC_KP_6,                                                                              KC_KP_7,          KC_KP_8,               KC_KP_9,             KC_KP_0,           KC_TRANSPARENT,        KC_NUMLOCK,       RGB_HUI,
-    RGB_SAD,          KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,     KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,                                                                       KC_TRANSPARENT,   KC_TRANSPARENT,        KC_TRANSPARENT,      KC_TRANSPARENT,    KC_TRANSPARENT,        KC_TRANSPARENT,   RGB_SAI,
-    KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,     KC_TRANSPARENT,   KC_TRANSPARENT,                                                                                                           KC_TRANSPARENT,        KC_TRANSPARENT,      KC_TRANSPARENT,    KC_TRANSPARENT,        RGB_MOD,          TO(5),
-    KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,     KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,                                                                       KC_TRANSPARENT,   KC_TRANSPARENT,        KC_TRANSPARENT,      KC_TRANSPARENT,    KC_TRANSPARENT,        KC_TRANSPARENT,   KC_TRANSPARENT,
-    KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,     KC_TRANSPARENT,                                                                                                                                                    KC_TRANSPARENT,      KC_TRANSPARENT,    KC_TRANSPARENT,        LED_LEVEL,        RESET,
-                                                                                                                                  KC_MS_WH_LEFT,    KC_MS_WH_DOWN,    KC_MS_WH_UP,      KC_MS_WH_RIGHT, 
+    RGB_HUD,          KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,     KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,                                                                       KC_TRANSPARENT,   KC_TRANSPARENT,        KC_TRANSPARENT,      KC_TRANSPARENT,    KC_TRANSPARENT,        KC_TRANSPARENT,   RGB_HUI,
+    RGB_SAD,          KC_KP_7,          KC_KP_8,          KC_KP_9,            KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,                                                                       KC_TRANSPARENT,   KC_TRANSPARENT,        KC_TRANSPARENT,      KC_TRANSPARENT,    KC_TRANSPARENT,        KC_TRANSPARENT,   RGB_SAI,
+    TO(0),            KC_KP_4,          KC_KP_5,          KC_KP_6,            KC_KP_0,          KC_TRANSPARENT,                                                                                                           KC_TRANSPARENT,        KC_NUMLOCK,          KC_ESCAPE,         KC_TRANSPARENT,        RGB_MOD,          TO(5),
+    KC_TRANSPARENT,   KC_KP_1,          KC_KP_2,          KC_KP_3,            KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,                                                                       KC_TRANSPARENT,   KC_TRANSPARENT,        KC_TRANSPARENT,      KC_TRANSPARENT,    KC_TRANSPARENT,        KC_TRANSPARENT,   RGB_SPI,
+    KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,     KC_TRANSPARENT,                                                                                                                                                    KC_TRANSPARENT,      KC_TRANSPARENT,    KC_TRANSPARENT,        LED_LEVEL,        RGB_SPD,
+                                                                                                                                  KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT, 
                                                                                                                                                     KC_TRANSPARENT,   KC_TRANSPARENT,
                                                                                                                 KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT
   ),
@@ -125,12 +125,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [4] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,                                                                       KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,
     KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,                                                                       KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,
-    KC_ESCAPE,        KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,                                                                                                           KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,
+    KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,                                                                                                           KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,
     KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,                                                                       TO(0),            KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,
     KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_SPACE,                                                                                                                                                     KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,
                                                                                                                                 KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT, 
                                                                                                                                                   KC_TRANSPARENT,   KC_TRANSPARENT,   
-                                                                                                                      KC_TAB,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT
+                                                                                                                      KC_TAB,   KC_ENTER,         KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT
   ),
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -138,9 +138,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [5] = LAYOUT_ergodox_pretty(
     KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                                         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
     KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                                         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                                                           KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                                                           KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   TO(0),
     KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                                         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                                                                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   TO(0),
+    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                                                                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   RESET,
                                                                               KC_NO,   KC_NO,   KC_NO,   KC_NO, 
                                                                                        KC_NO,   KC_NO,   
                                                                      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO
@@ -159,6 +159,7 @@ void layerToggle(int layer)
         visualLock = false;
         SEND_STRING(SS_UP(X_LSFT)); 
         layer_invert(layer);
+
         /*
         if(layerHeld == false) {
             layer_invert(layer); 
@@ -322,7 +323,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           ergodox_right_led_2_off();
       }
 
-      /*
+  /*
+    case TT(1):
+      if (record->event.pressed) {
+          layerHeld = true;
+      }
+
     case TT(1): // figure out how to make it so record->tap.count only applies to specifically TT(1)
       if (record->tap.count > 0) { 
           layerHeld = false;
@@ -382,6 +388,9 @@ uint32_t layer_state_set_user(uint32_t state) {
     case 0: // layer 0 neon pink
         if(!disable_layer_color) { 
             rgblight_enable_noeeprom();
+            rgblight_mode_noeeprom(1);
+            rgblight_sethsv_noeeprom(213,255,255);
+            /*
             if(gamesColour == 8) {
                 rgblight_mode_noeeprom(gamesColour); // 8 for breathing rgb - 13 for rainbow sliding (hopefully)
             }
@@ -389,6 +398,7 @@ uint32_t layer_state_set_user(uint32_t state) {
                 rgblight_mode_noeeprom(1);
                 rgblight_sethsv_noeeprom(213,255,255);
             }
+            */
         }
         break;
     case 1: // nav layer lighting
