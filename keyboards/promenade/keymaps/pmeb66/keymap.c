@@ -28,6 +28,7 @@ enum custom_keycodes {
     ST_CHAR_SWAP,
     ST_PAREN_PAIR,
     ST_BOX_PAIR,
+    ST_CURLY_PAIR,
     ST_CHEVRON_PAIR,
     ST_SINGLE_QUOTE_PAIR,
     ST_DOUBLE_QUOTE_PAIR,
@@ -46,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [1] = LAYOUT_all(
         KC_TRANSPARENT,        KC_F1,                 KC_F2,            KC_F3,               KC_F4,            KC_F5,            KC_F6,             KC_F7,            KC_F8,            KC_F9,            KC_F10,               KC_F11,                 KC_F12,                KC_TRANSPARENT,
         KC_MEDIA_PREV_TRACK,   ST_CLEAR_LINE_START,   LCTL(KC_RIGHT),   LCTL(KC_L),          LCTL(KC_Y),       KC_TRANSPARENT,   ST_PAREN_PAIR,     CAPS_WORD,        LCTL(KC_C),       LCTL(KC_Z),       ST_LINE_START,        ST_NEW_LINE,            LCTL(KC_V),            KC_MEDIA_NEXT_TRACK,
-        TO(0),                 ST_LINE_END,           ST_DEL_CHAR,      LCTL(KC_DELETE),     KC_TRANSPARENT,   LCTL(KC_END),     ST_BOX_PAIR,       KC_TRANSPARENT,   KC_LEFT,          KC_DOWN,          KC_UP,                KC_RIGHT,               KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
+        TO(0),                 ST_LINE_END,           ST_DEL_CHAR,      LCTL(KC_DELETE),     KC_TRANSPARENT,   LCTL(KC_END),     ST_BOX_PAIR,       ST_CURLY_PAIR,    KC_LEFT,          KC_DOWN,          KC_UP,                KC_RIGHT,               KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
         KC_TRANSPARENT,        KC_TRANSPARENT,        ST_CHAR_SWAP,     ST_CLEAR_LINE_END,   ST_VISUAL_LOCK,   LCTL(KC_LEFT),    ST_CHEVRON_PAIR,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,       KC_TRANSPARENT,         LCTL(KC_F),            KC_TRANSPARENT,
         KC_TRANSPARENT,        KC_TRANSPARENT,        KC_TRANSPARENT,   KC_TRANSPARENT,      KC_TRANSPARENT,                KC_TAB,                             KC_ENTER,               TT(3),          ST_SINGLE_QUOTE_PAIR,   ST_DOUBLE_QUOTE_PAIR,   KC_TRANSPARENT,        KC_TRANSPARENT
     ),
@@ -162,6 +163,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case ST_BOX_PAIR: // brackets macro -- []
         if (record->event.pressed) {
             SEND_STRING(SS_TAP(X_LBRACKET) SS_DELAY(60) SS_TAP(X_RBRACKET) SS_DELAY(60) SS_TAP(X_LEFT));
+        }
+        return false;
+
+        case ST_CURLY_PAIR: // brackets macro -- {}
+        if (record->event.pressed) {
+            SEND_STRING(SS_LSFT(SS_TAP(X_LBRACKET)) SS_DELAY(60) SS_LSFT(SS_TAP(X_RBRACKET)) SS_DELAY(60) SS_TAP(X_LEFT));
         }
         return false;
 
