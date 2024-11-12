@@ -52,6 +52,7 @@ enum custom_keycodes {
     ST_LINE_START,
     ST_LINE_END,
     ST_LINE_SELECT,
+    ST_WORD_SELECT,
     ST_CLEAR_LINE,
     ST_CLEAR_LINE_START,
     ST_CLEAR_LINE_END,
@@ -100,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [2] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT,        KC_F13,               KC_F14,           KC_F15,           KC_F16,               KC_F17,           KC_F18,                                                                                      KC_F19,           KC_F20,           KC_F21,           KC_AUDIO_MUTE,    KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP,       KC_TRANSPARENT,
     KC_MEDIA_PREV_TRACK,   LCTL(LSFT(KC_TAB)),   KC_TRANSPARENT,   LCTL(KC_TAB),     KC_TRANSPARENT,       KC_TRANSPARENT,   LGUI(LSFT(KC_S)),                                                                            KC_TRANSPARENT,   ST_YANK_LINE,     KC_TRANSPARENT,   KC_HOME,          KC_TRANSPARENT,      ST_NEW_LINE_PASTE,     KC_MEDIA_NEXT_TRACK,
-    TO(0),                 KC_END,               ST_LINE_SELECT,   ST_CLEAR_LINE,    LCTL(LSFT(KC_TAB)),   LCTL(KC_HOME),                                                                                                                   KC_MS_LEFT,       KC_MS_DOWN,       KC_MS_UP,         KC_MS_RIGHT,         KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
+    TO(0),                 KC_END,               ST_LINE_SELECT,   ST_CLEAR_LINE,    ST_WORD_SELECT,       LCTL(KC_HOME),                                                                                                                   KC_MS_LEFT,       KC_MS_DOWN,       KC_MS_UP,         KC_MS_RIGHT,         KC_MEDIA_PLAY_PAUSE,   KC_TRANSPARENT,
     KC_TRANSPARENT,        KC_MS_ACCEL0,         KC_MS_ACCEL1,     KC_MS_ACCEL2,     KC_INSERT,            KC_TRANSPARENT,   KC_TRANSPARENT,                                                                              KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      LCTL(UK_F),            KC_TRANSPARENT,
     KC_TRANSPARENT,        KC_TRANSPARENT,       KC_TRANSPARENT,   KC_TRANSPARENT,   TT(3),                                                                                                                                                                   KC_TRANSPARENT,   KC_TRANSPARENT,   KC_TRANSPARENT,      ST_RGB_TOG,            RGB_TOG,
                                                                                                                                    KC_MS_WH_LEFT,         KC_MS_WH_DOWN,    KC_MS_WH_UP,      KC_MS_WH_RIGHT, 
@@ -195,6 +196,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return false;
 
+    case ST_WORD_SELECT:
+    if(record->event.pressed) {
+        SEND_STRING(SS_LCTL(SS_TAP(X_LEFT)) SS_DELAY(60) SS_LCTL(SS_LSFT(SS_TAP(X_RIGHT))) SS_DELAY(60) SS_LSFT(SS_TAP(X_LEFT)));
+    }
+    return false;
+
     case ST_CLEAR_LINE:
     if (record->event.pressed) { // delete a whole line
         SEND_STRING(SS_TAP(X_HOME) SS_DELAY(60) SS_LSFT(SS_TAP(X_END)) SS_DELAY(60) SS_TAP(X_DEL));
@@ -244,7 +251,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case ST_CHAR_SWAP: // swap two characters to the right of the cursor
     if (record->event.pressed) {
         SEND_STRING(SS_LSFT(SS_TAP(X_RIGHT)) SS_DELAY(60) SS_LCTRL(SS_TAP(X_X)) SS_DELAY(60) SS_TAP(X_RIGHT) SS_DELAY(60) SS_LCTRL(SS_TAP(X_V)));
-        layerToggle(1);
     }
     return false;
 
