@@ -335,21 +335,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           visualLock = false;
           ergodox_right_led_2_off();
       }
+      return false;
 
-  /*
     case TT(1):
       if (record->event.pressed) {
           layerHeld = true;
       }
-
-    case TT(1): // figure out how to make it so record->tap.count only applies to specifically TT(1)
-      if (record->tap.count > 0) { 
+      else if (!record->event.pressed) {
           layerHeld = false;
       }
-      else {
-          layerHeld = true;
-      }
-      */
+      return false;
   }
   return true;
 }
