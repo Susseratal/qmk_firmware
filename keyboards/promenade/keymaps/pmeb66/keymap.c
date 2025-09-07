@@ -13,6 +13,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include QMK_KEYBOARD_H
+#include "raw_hid.h"
 #include "keymap_uk.h"
 
 enum custom_keycodes {
@@ -87,14 +88,83 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 
+/*
+bool disableLayerColour = false;
+
+led_config_t g_led_config = {{
+                                 {13, 12, 11, 10, 9, 8, 7},
+                                 {0, 1, 2, 3, 4, 5, 6},
+                             },
+                             {{28, 22},
+                              {56, 22},
+                              {84, 22},
+                              {112, 22},
+                              {140, 22},
+                              {168, 22},
+                              {196, 22},
+
+                              {28, 44},
+                              {56, 44},
+                              {84, 44},
+                              {112, 44},
+                              {140, 44},
+                              {168, 44},
+                              {196, 44}},
+                             {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4}};
+
+uint32_t layer_state_set_user(uint32_t state) {
+    uint8_t layer = biton32(state);
+
+    switch(layer):
+        case 0:
+            if (!disable_layer_color) {
+                rgblight_enable_noeeprom();
+                rgblight_mode_noeeprom(1);
+                rgblight_sethsv_noeeprom(213, 255, 255);
+            }
+        case 1:
+            rgb_matrix_set_color_all(120, 255, 255) break;
+        case 2:
+            rgb_matrix_set_color_all(120, 255, 255) break;
+        case 3:
+            rgb_matrix_set_color_all(0, 0, 0) break;
+        case 4:
+            rgb_matrix_set_color_all(0, 0, 0) break;
+        case 5:
+            rgb_matrix_set_color_all(0, 0, 0) break;
+        default: if (!disable_layer_colour) {
+
+            rgblight_config.raw = eeconfig_read_rgblight();
+            if (rgblight_config.enable == true) {
+
+                rgblight_enable();
+                rgblight_mode(rgblight_config.mode);
+                rgblight_sethsv(rgblight_config.hue, rgblight_config.sat, rgblight_config.val);
+            } else {
+                rgblight_disable();
+            }
+        }
+
+    }
+    return false;
+}
+*/
+
 bool visualLock = false;
+uint8_t data;
 
 void layerToggle(int layer) {
     visualLock = false;
     SEND_STRING(SS_UP(X_LSFT));
     layer_invert(layer);
+
+#ifdef RAW_ENABLE
+    data = layer;
+    raw_hid_send(&data, 32);
+#endif
 }
 
+// MACROS // 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch(keycode) {
         case ST_LINE_START:

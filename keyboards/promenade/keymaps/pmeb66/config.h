@@ -17,3 +17,6 @@
 
 #undef MOUSEKEY_MAX_SPEED
 #define MOUSEKEY_MAX_SPEED 5
+
+// #define WS2812_DI_PIN B7
+// #define RGBLIGHT_LED_COUNT 14
