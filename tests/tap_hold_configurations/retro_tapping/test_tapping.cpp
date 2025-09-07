@@ -108,5 +108,9 @@ TEST_F(Tapping, ANewTapWithinTappingTermIsBuggy) {
     EXPECT_EMPTY_REPORT(driver);
     key_shift_hold_p_tap.release();
     run_one_scan_loop();
+<<<<<<< HEAD
     VERIFY_AND_CLEAR(driver);
+=======
+    testing::Mock::VerifyAndClearExpectations(&driver);
+>>>>>>> firmware21
 }

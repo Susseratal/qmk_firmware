@@ -113,6 +113,7 @@ void TestFixture::tap_key(KeymapKey key, unsigned delay_ms) {
     run_one_scan_loop();
 }
 
+<<<<<<< HEAD
 void TestFixture::tap_combo(const std::vector<KeymapKey>& chord_keys, unsigned delay_ms) {
     for (KeymapKey key : chord_keys) { // Press each key.
         key.press();
@@ -129,6 +130,8 @@ void TestFixture::tap_combo(const std::vector<KeymapKey>& chord_keys, unsigned d
     }
 }
 
+=======
+>>>>>>> firmware21
 void TestFixture::set_keymap(std::initializer_list<KeymapKey> keys) {
     this->keymap.clear();
     for (auto& key : keys) {

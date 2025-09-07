@@ -1076,6 +1076,7 @@ __attribute__((weak)) void unregister_mods(uint8_t mods) {
     }
 }
 
+
 /** \brief Adds the given weak modifiers and sends a keyboard report immediately.
  *
  * \param mods A bitfield of modifiers to register.

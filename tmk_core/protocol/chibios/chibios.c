@@ -84,6 +84,24 @@ host_driver_t chibios_driver = {
 void virtser_task(void);
 #endif
 
+<<<<<<< HEAD
+=======
+#ifdef RAW_ENABLE
+void raw_hid_task(void);
+#endif
+
+#ifdef CONSOLE_ENABLE
+void console_task(void);
+#endif
+#ifdef MIDI_ENABLE
+void midi_ep_task(void);
+#endif
+
+#ifdef WEBUSB_ENABLE
+void webusb_task(void);
+#endif
+
+>>>>>>> firmware21
 /* TESTING
  * Amber LED blinker thread, times are in milliseconds.
  */
@@ -206,5 +224,15 @@ void protocol_post_task(void) {
 #ifdef VIRTSER_ENABLE
     virtser_task();
 #endif
+<<<<<<< HEAD
     usb_idle_task();
+=======
+#ifdef RAW_ENABLE
+    raw_hid_task();
+#endif
+#ifdef WEBUSB_ENABLE
+    webusb_task();
+#endif
+
+>>>>>>> firmware21
 }

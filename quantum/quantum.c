@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <ctype.h>
 #include "quantum.h"
 
 #ifdef BACKLIGHT_ENABLE
@@ -349,6 +350,9 @@ bool process_record_quantum(keyrecord_t *record) {
 #endif
 #ifdef HAPTIC_ENABLE
             process_haptic(keycode, record) &&
+#endif // HAPTIC_ENABLE
+#ifdef ORYX_ENABLE
+            process_record_oryx(keycode, record) &&
 #endif
 #if defined(POINTING_DEVICE_ENABLE) && defined(POINTING_DEVICE_AUTO_MOUSE_ENABLE)
             process_auto_mouse(keycode, record) &&
@@ -391,6 +395,9 @@ bool process_record_quantum(keyrecord_t *record) {
 #ifdef TAP_DANCE_ENABLE
             process_tap_dance(keycode, record) &&
 #endif
+#ifdef CAPS_WORD_ENABLE
+            process_caps_word(keycode, record) &&
+#endif
 #if defined(UNICODE_COMMON_ENABLE)
             process_unicode_common(keycode, record) &&
 #endif
@@ -403,6 +410,12 @@ bool process_record_quantum(keyrecord_t *record) {
 #ifdef DYNAMIC_TAPPING_TERM_ENABLE
             process_dynamic_tapping_term(keycode, record) &&
 #endif
+<<<<<<< HEAD
+=======
+#ifdef TERMINAL_ENABLE
+            process_terminal(keycode, record) &&
+#endif
+>>>>>>> firmware21
 #ifdef SPACE_CADET_ENABLE
             process_space_cadet(keycode, record) &&
 #endif
@@ -532,6 +545,19 @@ void set_single_persistent_default_layer(uint8_t default_layer) {
     eeconfig_update_default_layer((layer_state_t)1 << default_layer);
     set_single_default_layer(default_layer);
 }
+
+#ifdef WEBUSB_ENABLE
+__attribute__((weak)) bool webusb_receive_user(uint8_t *data, uint8_t length) {
+    return false;
+}
+__attribute__((weak)) bool webusb_receive_kb(uint8_t *data, uint8_t length) {
+    return webusb_receive_user(data, length);
+}
+
+bool webusb_receive_quantum(uint8_t *data, uint8_t length) {
+    return webusb_receive_kb(data, length);
+}
+#endif
 
 //------------------------------------------------------------------------------
 // Override these functions in your keymap file to play different tunes on

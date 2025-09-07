@@ -1,3 +1,4 @@
+<<<<<<< HEAD:keyboards/zsa/moonlander/keymaps/oryx/keymap.c
 /* Copyright 2020 ZSA Technology Labs, Inc <@zsa>
  * Copyright 2020 Jack Humbert <jack.humb@gmail.com>
  * Copyright 2020 Christopher Courtney, aka Drashna Jael're  (@drashna) <drashna@live.com>
@@ -71,3 +72,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 }
+=======
+// placeholder
+>>>>>>> firmware21:keyboards/moonlander/keymaps/oryx/keymap.c

@@ -42,8 +42,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MOUSEKEY_WHEEL_MAX_SPEED MOUSEKEY_MAX_SPEED
 #define MOUSEKEY_WHEEL_TIME_TO_MAX MOUSEKEY_TIME_TO_MAX
 
+<<<<<<< HEAD:keyboards/zsa/ergodox_ez/config.h
 #define BOOTMAGIC_LITE_ROW_RIGHT 13
 #define BOOTMAGIC_LITE_COLUMN_RIGHT 0
+=======
+#define DEBOUNCE 30
+
+#define TAPPING_TOGGLE  1
+
+/* define if matrix has ghost */
+//#define MATRIX_HAS_GHOST
+
+#define TAPPING_TERM    200
+#define IGNORE_MOD_TAP_INTERRUPT // this makes it possible to do rolling combos (zx) with keys that convert to other keys on hold (z becomes ctrl when you hold it, and when this option isn't enabled, z rapidly followed by x actually sends Ctrl-x. That's bad.)
+>>>>>>> firmware21:keyboards/ergodox_ez/config.h
 
 /* key combination for command */
 #define IS_COMMAND() (get_mods() == (MOD_BIT(KC_LCTL) | MOD_BIT(KC_RCTL)) || get_mods() == (MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT)))
@@ -138,6 +150,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ENABLE_RGB_MATRIX_SOLID_SPLASH
 #define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 
+<<<<<<< HEAD:keyboards/zsa/ergodox_ez/config.h
 // Enable rgb light animations for the shine
 #define RGBLIGHT_EFFECT_ALTERNATING
 #define RGBLIGHT_EFFECT_BREATHING
@@ -151,6 +164,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_EFFECT_TWINKLE
 
 #define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_RAINBOW_SWIRL
+=======
+#define TAPPING_TOGGLE 1
+>>>>>>> firmware21:keyboards/ergodox_ez/config.h
 // #define RGBLIGHT_COLOR_LAYER_0 0x00, 0x00, 0xFF
 /* #define RGBLIGHT_COLOR_LAYER_1 0x00, 0x00, 0xFF */
 /* #define RGBLIGHT_COLOR_LAYER_2 0xFF, 0x00, 0x00 */

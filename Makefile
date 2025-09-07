@@ -158,6 +158,33 @@ define PARSE_RULE
     ifeq ($$(call COMPARE_AND_REMOVE_FROM_RULE,all),true)
         KEYBOARD_RULE=all
         $$(eval $$(call PARSE_ALL_KEYBOARDS))
+<<<<<<< HEAD
+=======
+    else ifeq ($$(call COMPARE_AND_REMOVE_FROM_RULE,all-avr),true)
+        KEYBOARD_RULE=all
+        REQUIRE_PLATFORM_KEY := avr
+        $$(eval $$(call PARSE_ALL_KEYBOARDS))
+    else ifeq ($$(call COMPARE_AND_REMOVE_FROM_RULE,all-chibios),true)
+        KEYBOARD_RULE=all
+        REQUIRE_PLATFORM_KEY := chibios
+        $$(eval $$(call PARSE_ALL_KEYBOARDS))
+    else ifeq ($$(call COMPARE_AND_REMOVE_FROM_RULE,all-arm_atsam),true)
+        KEYBOARD_RULE=all
+        REQUIRE_PLATFORM_KEY := arm_atsam
+        $$(eval $$(call PARSE_ALL_KEYBOARDS))
+    else ifeq ($$(call COMPARE_AND_REMOVE_FROM_RULE,all-avr),true)
+        KEYBOARD_RULE=all
+        REQUIRE_PLATFORM_KEY := avr
+        $$(eval $$(call PARSE_ALL_KEYBOARDS))
+    else ifeq ($$(call COMPARE_AND_REMOVE_FROM_RULE,all-chibios),true)
+        KEYBOARD_RULE=all
+        REQUIRE_PLATFORM_KEY := chibios
+        $$(eval $$(call PARSE_ALL_KEYBOARDS))
+    else ifeq ($$(call COMPARE_AND_REMOVE_FROM_RULE,all-arm_atsam),true)
+        KEYBOARD_RULE=all
+        REQUIRE_PLATFORM_KEY := arm_atsam
+        $$(eval $$(call PARSE_ALL_KEYBOARDS))
+>>>>>>> firmware21
     else ifeq ($$(call COMPARE_AND_REMOVE_FROM_RULE,test),true)
         $$(eval $$(call PARSE_TEST))
     # If the rule starts with the name of a known keyboard, then continue

@@ -265,7 +265,7 @@ float voice_envelope(float frequency) {
                 case 0 ... VOICE_VIBRATO_DELAY:
                     break;
                 default:
-                    // TODO: merge/replace with voice_add_vibrato above
+
                     frequency = frequency * vibrato_lut[(int)fmod((((float)compensated_index - (VOICE_VIBRATO_DELAY + 1)) / 1000 * VOICE_VIBRATO_SPEED), VIBRATO_LUT_LENGTH)];
                     break;
             }

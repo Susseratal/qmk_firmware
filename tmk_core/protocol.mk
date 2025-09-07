@@ -33,6 +33,18 @@ ifeq ($(strip $(PROGRAMMABLE_BUTTON_ENABLE)), yes)
     SHARED_EP_ENABLE = yes
 endif
 
+<<<<<<< HEAD
+=======
+ifeq ($(strip $(RAW_ENABLE)), yes)
+    TMK_COMMON_DEFS += -DRAW_ENABLE
+endif
+
+ifeq ($(strip $(WEBUSB_ENABLE)), yes)
+    TMK_COMMON_SRC += $(PLATFORM_PATH)/webusb.c
+    TMK_COMMON_DEFS += -DWEBUSB_ENABLE
+endif
+
+>>>>>>> firmware21
 ifeq ($(strip $(CONSOLE_ENABLE)), yes)
     OPT_DEFS += -DCONSOLE_ENABLE
 else

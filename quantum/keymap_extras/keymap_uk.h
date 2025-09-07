@@ -27,6 +27,7 @@
 #include "keycodes.h"
 // clang-format off
 
+<<<<<<< HEAD
 #define QMK_UK_KEYCODES_VERSION "0.0.1"
 #define QMK_UK_KEYCODES_VERSION_BCD 0x00000001
 #define QMK_UK_KEYCODES_VERSION_MAJOR 0
@@ -34,6 +35,22 @@
 #define QMK_UK_KEYCODES_VERSION_PATCH 1
 
 // Aliases
+=======
+/*
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │ ` │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ - │ = │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │ Q │ W │ E │ R │ T │ Y │ U │ I │ O │ P │ [ │ ] │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │ A │ S │ D │ F │ G │ H │ J │ K │ L │ ; │ ' │ # │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │ \ │ Z │ X │ C │ V │ B │ N │ M │ , │ . │ / │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define UK_GRV  KC_GRV  // `
 #define UK_1    KC_1    // 1
 #define UK_2    KC_2    // 2
@@ -82,6 +99,24 @@
 #define UK_COMM KC_COMM // ,
 #define UK_DOT  KC_DOT  // .
 #define UK_SLSH KC_SLSH // /
+<<<<<<< HEAD
+=======
+
+/* Shifted symbols
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │ ¬ │ ! │ " │ £ │ $ │ % │ ^ │ & │ * │ ( │ ) │ _ │ + │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │   │   │   │   │   │   │   │   │   │   │ { │ } │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │   │   │   │   │   │   │   │   │   │ : │ @ │ ~ │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │ | │   │   │   │   │   │   │   │ < │ > │ ? │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define UK_NOT  S(UK_GRV)  // ¬
 #define UK_EXLM S(UK_1)    // !
 #define UK_DQUO S(UK_2)    // "
@@ -104,6 +139,24 @@
 #define UK_LABK S(UK_COMM) // <
 #define UK_RABK S(UK_DOT)  // >
 #define UK_QUES S(UK_SLSH) // ?
+<<<<<<< HEAD
+=======
+
+/* AltGr symbols
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │ ¦ │   │   │   │ € │   │   │   │   │   │   │   │   │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │   │   │ É │   │   │   │ Ú │ Í │ Ó │   │   │   │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │ Á │   │   │   │   │   │   │   │   │   │   │   │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │   │   │   │   │   │   │   │   │   │   │   │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define UK_BRKP ALGR(UK_GRV)  // ¦
 #define UK_EURO ALGR(UK_4)    // €
 #define UK_EACU ALGR(KC_E)    // É
@@ -112,3 +165,80 @@
 #define UK_OACU ALGR(KC_O)    // Ó
 #define UK_AACU ALGR(KC_A)    // Á
 
+<<<<<<< HEAD
+=======
+// DEPRECATED
+#define UK_ESC  KC_ESC
+#define UK_F1   KC_F1
+#define UK_F2   KC_F2
+#define UK_F3   KC_F3
+#define UK_F4   KC_F4
+#define UK_F5   KC_F5
+#define UK_F6   KC_F6
+#define UK_F7   KC_F7
+#define UK_F8   KC_F8
+#define UK_F9   KC_F9
+#define UK_F10  KC_F10
+#define UK_F11  KC_F11
+#define UK_F12  KC_F12
+#define UK_PSCR KC_PSCR
+#define UK_SLCK KC_SLCK
+#define UK_PAUS KC_PAUS
+#define UK_BSPC KC_BSPC
+#define UK_TAB  KC_TAB
+#define UK_ENT  KC_ENT
+#define UK_LSFT KC_LSFT
+#define UK_RSFT KC_RSFT
+#define UK_LCTL KC_LCTL
+#define UK_LGUI KC_LGUI
+#define UK_LALT KC_LALT
+#define UK_SPC  KC_SPC
+#define UK_RALT KC_RALT
+#define UK_RGUI KC_RGUI
+#define UK_RCTL KC_RCTL
+#define UK_INS  KC_INS
+#define UK_DEL  KC_DEL
+#define UK_HOME KC_HOME
+#define UK_END  KC_END
+#define UK_PGUP KC_PGUP
+#define UK_PGDN KC_PGDN
+#define UK_UP   KC_UP
+#define UK_LEFT KC_LEFT
+#define UK_DOWN KC_DOWN
+#define UK_RGHT KC_RGHT
+#define UK_PSLS KC_PSLS
+#define UK_PAST KC_PAST
+#define UK_PMNS KC_PMNS
+#define UK_PPLS KC_PPLS
+#define UK_PENT KC_PENT
+#define UK_P1   KC_P1
+#define UK_P2   KC_P2
+#define UK_P3   KC_P3
+#define UK_P4   KC_P4
+#define UK_P5   KC_P5
+#define UK_P6   KC_P6
+#define UK_P7   KC_P7
+#define UK_P8   KC_P8
+#define UK_P9   KC_P9
+#define UK_P0   KC_P0
+#define UK_PDOT KC_PDOT
+#define UK_PEQL KC_PEQL
+#define UK_PCMM KC_PCMM
+#define UK_F13  KC_F13
+#define UK_F14  KC_F14
+#define UK_F15  KC_F15
+#define UK_F16  KC_F16
+#define UK_F17  KC_F17
+#define UK_F18  KC_F18
+#define UK_F19  KC_F19
+#define UK_F20  KC_F20
+#define UK_F21  KC_F21
+#define UK_F22  KC_F22
+#define UK_F23  KC_F23
+#define UK_F24  KC_F24
+#define UK_EACT UK_EACU
+#define UK_UACT UK_UACU
+#define UK_IACT UK_IACU
+#define UK_OACT UK_OACU
+#define UK_AACT UK_OACU
+>>>>>>> firmware21

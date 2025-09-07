@@ -27,6 +27,7 @@
 #include "keycodes.h"
 // clang-format off
 
+<<<<<<< HEAD
 #define QMK_HUNGARIAN_KEYCODES_VERSION "0.0.1"
 #define QMK_HUNGARIAN_KEYCODES_VERSION_BCD 0x00000001
 #define QMK_HUNGARIAN_KEYCODES_VERSION_MAJOR 0
@@ -34,6 +35,22 @@
 #define QMK_HUNGARIAN_KEYCODES_VERSION_PATCH 1
 
 // Aliases
+=======
+/*
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │ 0 │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ Ö │ Ü │ Ó │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │ Q │ W │ E │ R │ T │ Z │ U │ I │ O │ P │ Ő │ Ú │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │ A │ S │ D │ F │ G │ H │ J │ K │ L │ É │ Á │ Ű │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │ Í │ Y │ X │ C │ V │ B │ N │ M │ , │ . │ - │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define HU_0    KC_GRV  // 0
 #define HU_1    KC_1    // 1
 #define HU_2    KC_2    // 2
@@ -82,6 +99,24 @@
 #define HU_COMM KC_COMM // ,
 #define HU_DOT  KC_DOT  // .
 #define HU_MINS KC_SLSH // -
+<<<<<<< HEAD
+=======
+
+/* Shifted symbols
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │ § │ ' │ " │ + │ ! │ % │ / │ = │ ( │ ) │   │   │   │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │   │   │   │   │   │   │   │   │   │   │   │   │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │   │   │   │   │   │   │   │   │   │   │   │   │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │   │   │   │   │   │   │   │   │ ? │ : │ _ │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define HU_SECT S(HU_0)    // §
 #define HU_QUOT S(HU_1)    // '
 #define HU_DQUO S(HU_2)    // "
@@ -95,6 +130,24 @@
 #define HU_QUES S(HU_COMM) // ?
 #define HU_COLN S(HU_DOT)  // :
 #define HU_UNDS S(HU_MINS) // _
+<<<<<<< HEAD
+=======
+
+/* AltGr symbols
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │   │ ~ │ ˇ │ ^ │ ˘ │ ° │ ˛ │ ` │ ˙ │ ´ │ ˝ │ ¨ │ ¸ │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │ \ │ | │ Ä │   │   │   │ € │   │   │   │ ÷ │ × │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │ ä │ đ │ Đ │ [ │ ] │   │   │ ł │ Ł │ $ │ ß │ ¤ │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │ < │ > │ # │ & │ @ │ { │ } │   │ ; │   │ * │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define HU_TILD ALGR(HU_1)    // ~
 #define HU_CARN ALGR(HU_2)    // ˇ (dead)
 #define HU_CIRC ALGR(HU_3)    // ^ (dead)
@@ -133,3 +186,24 @@
 #define HU_SCLN ALGR(HU_COMM) // ;
 #define HU_ASTR ALGR(HU_MINS) // *
 
+<<<<<<< HEAD
+=======
+// DEPRECATED
+#define HU_OE   HU_ODIA
+#define HU_UE   HU_UDIA
+#define HU_OO   HU_OACU
+#define HU_OEE  HU_ODAC
+#define HU_UU   HU_UACU
+#define HU_EE   HU_EACU
+#define HU_AA   HU_AACU
+#define HU_UEE  HU_UDAC
+#define HU_II   HU_IACU
+#define HU_PARA HU_SECT
+#define HU_DQOT HU_DQUO
+#define HU_QST  HU_QUES
+#define HU_BRV  HU_BREV
+#define HU_RING HU_RNGA
+#define HU_CRSS HU_MUL
+#define HU_LESS HU_LABK
+#define HU_MORE HU_RABK
+>>>>>>> firmware21

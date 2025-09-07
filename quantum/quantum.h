@@ -175,11 +175,20 @@ extern layer_state_t layer_state;
 #endif
 
 #ifdef DIP_SWITCH_ENABLE
-#    include "dip_switch.h"
+    #include "dip_switch.h"
+#endif
+
+
+#ifdef WEBUSB_ENABLE
+#    include "webusb.h"
+#endif
+
+#ifdef ORYX_ENABLE
+#    include "oryx.h"
 #endif
 
 #ifdef DYNAMIC_MACRO_ENABLE
-#    include "process_dynamic_macro.h"
+    #include "process_dynamic_macro.h"
 #endif
 
 #ifdef SECURE_ENABLE
@@ -205,6 +214,7 @@ extern layer_state_t layer_state;
 #ifdef WPM_ENABLE
 #    include "wpm.h"
 #endif
+
 
 #ifdef USBPD_ENABLE
 #    include "usbpd.h"
@@ -282,6 +292,9 @@ void register_code16(uint16_t code);
 void unregister_code16(uint16_t code);
 void tap_code16(uint16_t code);
 void tap_code16_delay(uint16_t code, uint16_t delay);
+
+bool webusb_receive_kb(uint8_t *data, uint8_t length);
+bool webusb_receive_user(uint8_t *data, uint8_t length);
 
 const char *get_numeric_str(char *buf, size_t buf_len, uint32_t curr_num, char curr_pad);
 const char *get_u8_str(uint8_t curr_num, char curr_pad);

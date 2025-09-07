@@ -16,13 +16,27 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+<<<<<<< HEAD
+=======
+        keyboard:
+          - ergodox_ez
+          - ergodox_ez/shine
+          - ergodox_ez/glow
+          - moonlander
+          - planck/ez
+          - planck/ez/glow
+>>>>>>> firmware21
         keymap:
           - default
           - oryx
 
     steps:
     - name: Checkout QMK Firmware
+<<<<<<< HEAD
       uses: actions/checkout@v4
+=======
+      uses: actions/checkout@v2
+>>>>>>> firmware21
       with:
         fetch-depth: 1
         persist-credentials: false
@@ -31,4 +45,21 @@ jobs:
     - name: Build
       id: build
       run: |
+<<<<<<< HEAD
         qmk mass-compile -f manufacturer="ZSA Technology Labs" -km ${{ matrix.keymap }} -e SKIP_GIT=1
+=======
+        qmk compile -kb ${{ matrix.keyboard}} -km ${{ matrix.keymap }}
+
+        TARGET="$(echo "${{ matrix.keyboard }}" | sed 's#/#_#g')_${{matrix.keymap}}"
+        echo ::set-output name=artifact-name::${TARGET}
+        echo "Artifact-name: ${{ steps.build.outputs.artifact-name }}"
+
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: "${{ steps.build.outputs.artifact-name }}"
+        path: |
+          *.hex
+          *.bin
+      continue-on-error: true
+>>>>>>> firmware21

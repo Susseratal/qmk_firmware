@@ -69,6 +69,7 @@ class TestDriver {
 #define EXPECT_REPORT(driver, report) EXPECT_CALL((driver), send_keyboard_mock(KeyboardReport report))
 
 /**
+<<<<<<< HEAD
  * @brief Sets gmock expectation that a mouse report of `report` will be sent.
  * For this macro to parse correctly, the `report` arg must be surrounded by
  * parentheses ( ). For instance,
@@ -89,6 +90,9 @@ class TestDriver {
 
 /**
  * @brief Sets gmock expectation that Unicode `code_point` is sent with UNICODE_MODE_LINUX input
+=======
+ * @brief Sets gmock expectation that Unicode `code_point` is sent with UC_LNX input
+>>>>>>> firmware21
  * mode. For instance for U+2013,
  *
  *   EXPECT_UNICODE(driver, 0x2013);
@@ -109,6 +113,7 @@ class TestDriver {
 #define EXPECT_EMPTY_REPORT(driver) EXPECT_REPORT(driver, ())
 
 /**
+<<<<<<< HEAD
  * @brief Sets gmock expectation that a empty keyboard report will be sent.
  * It is possible to use .Times() and other gmock APIS with EXPECT_EMPTY_MOUSE_REPORT, for instance,
  * allow any number of empty reports with:
@@ -118,6 +123,8 @@ class TestDriver {
 #define EXPECT_EMPTY_MOUSE_REPORT(driver) EXPECT_MOUSE_REPORT(driver, (0, 0, 0, 0, 0))
 
 /**
+=======
+>>>>>>> firmware21
  * @brief Sets gmock expectation that a keyboard report will be sent, without matching its content.
  * It is possible to use .Times() and other gmock APIS with EXPECT_ANY_REPORT, for instance,
  * allow a single arbitrary report with:
@@ -127,6 +134,7 @@ class TestDriver {
 #define EXPECT_ANY_REPORT(driver) EXPECT_CALL((driver), send_keyboard_mock(_))
 
 /**
+<<<<<<< HEAD
  * @brief Sets gmock expectation that a mouse report will be sent, without matching its content.
  * It is possible to use .Times() and other gmock APIS with EXPECT_ANY_MOUSE_REPORT, for instance,
  * allow a single arbitrary report with:
@@ -136,10 +144,13 @@ class TestDriver {
 #define EXPECT_ANY_MOUSE_REPORT(driver) EXPECT_CALL((driver), send_mouse_mock(_))
 
 /**
+=======
+>>>>>>> firmware21
  * @brief Sets gmock expectation that no keyboard report will be sent at all.
  */
 #define EXPECT_NO_REPORT(driver) EXPECT_ANY_REPORT(driver).Times(0)
 
+<<<<<<< HEAD
 /**
  * @brief Sets gmock expectation that no keyboard report will be sent at all.
  */
@@ -162,6 +173,8 @@ MATCHER_P(KeycodeEq, expected_keycode, "is equal to " + testing::PrintToString(e
  */
 #define VERIFY_AND_CLEAR(driver) testing::Mock::VerifyAndClearExpectations(&driver)
 
+=======
+>>>>>>> firmware21
 namespace internal {
 void expect_unicode_code_point(TestDriver& driver, uint32_t code_point);
 } // namespace internal

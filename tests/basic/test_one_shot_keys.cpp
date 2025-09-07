@@ -32,8 +32,16 @@ TEST_F(OneShot, OSMWithoutAdditionalKeypressDoesNothing) {
 
     /* Press and release OSM key*/
     EXPECT_NO_REPORT(driver);
+<<<<<<< HEAD
     tap_key(osm_key);
     VERIFY_AND_CLEAR(driver);
+=======
+    osm_key.press();
+    run_one_scan_loop();
+    osm_key.release();
+    run_one_scan_loop();
+    testing::Mock::VerifyAndClearExpectations(&driver);
+>>>>>>> firmware21
 
     /* OSM are added when an actual report is send */
     EXPECT_REPORT(driver, (osm_key.report_code));
@@ -85,8 +93,16 @@ TEST_P(OneShotParametrizedTestFixture, OSMWithAdditionalKeypress) {
 
     /* Press and release OSM */
     EXPECT_NO_REPORT(driver);
+<<<<<<< HEAD
     tap_key(osm_key);
     VERIFY_AND_CLEAR(driver);
+=======
+    osm_key.press();
+    run_one_scan_loop();
+    osm_key.release();
+    run_one_scan_loop();
+    testing::Mock::VerifyAndClearExpectations(&driver);
+>>>>>>> firmware21
 
     /* Press regular key */
     EXPECT_REPORT(driver, (osm_key.report_code, regular_key.report_code)).Times(1);

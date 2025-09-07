@@ -724,17 +724,25 @@ void rgb_matrix_decrease_speed(void) {
 void rgb_matrix_set_flags_eeprom_helper(led_flags_t flags, bool write_to_eeprom) {
     rgb_matrix_config.flags = flags;
     eeconfig_flag_rgb_matrix(write_to_eeprom);
+<<<<<<< HEAD
     dprintf("rgb matrix set flags [%s]: %u\n", (write_to_eeprom) ? "EEPROM" : "NOEEPROM", rgb_matrix_config.flags);
 }
 
+=======
+    dprintf("rgb matrix set speed [%s]: %u\n", (write_to_eeprom) ? "EEPROM" : "NOEEPROM", rgb_matrix_config.flags);
+}
+>>>>>>> firmware21
 led_flags_t rgb_matrix_get_flags(void) {
     return rgb_matrix_config.flags;
 }
 
 void rgb_matrix_set_flags(led_flags_t flags) {
     rgb_matrix_set_flags_eeprom_helper(flags, true);
+<<<<<<< HEAD
 }
 
 void rgb_matrix_set_flags_noeeprom(led_flags_t flags) {
     rgb_matrix_set_flags_eeprom_helper(flags, false);
+=======
+>>>>>>> firmware21
 }

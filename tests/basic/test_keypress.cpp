@@ -64,7 +64,15 @@ TEST_F(KeyPress, CorrectKeysAreReportedWhenTwoKeysArePressed) {
 
     key_b.press();
     key_c.press();
+<<<<<<< HEAD
     EXPECT_REPORT(driver, (key_b.report_code));
+=======
+    // Note that QMK only processes one key at a time
+    // See issue #1476 for more information
+    EXPECT_REPORT(driver, (key_b.report_code));
+    keyboard_task();
+
+>>>>>>> firmware21
     EXPECT_REPORT(driver, (key_b.report_code, key_c.report_code));
     keyboard_task();
 
@@ -72,6 +80,11 @@ TEST_F(KeyPress, CorrectKeysAreReportedWhenTwoKeysArePressed) {
     key_c.release();
     // Note that the first key released is the first one in the matrix order
     EXPECT_REPORT(driver, (key_c.report_code));
+<<<<<<< HEAD
+=======
+    keyboard_task();
+
+>>>>>>> firmware21
     EXPECT_EMPTY_REPORT(driver);
     keyboard_task();
 }
@@ -86,7 +99,14 @@ TEST_F(KeyPress, LeftShiftIsReportedCorrectly) {
     key_lsft.press();
     key_a.press();
 
+<<<<<<< HEAD
     EXPECT_REPORT(driver, (key_a.report_code));
+=======
+    // Unfortunately modifiers are also processed in the wrong order
+    // See issue #1476 for more information
+    EXPECT_REPORT(driver, (key_a.report_code));
+    keyboard_task();
+>>>>>>> firmware21
     EXPECT_REPORT(driver, (key_a.report_code, key_lsft.report_code));
     keyboard_task();
 
@@ -109,7 +129,15 @@ TEST_F(KeyPress, PressLeftShiftAndControl) {
     key_lsft.press();
     key_lctrl.press();
 
+<<<<<<< HEAD
     EXPECT_REPORT(driver, (key_lsft.report_code));
+=======
+    // Unfortunately modifiers are also processed in the wrong order
+    // See issue #1476 for more information
+    EXPECT_REPORT(driver, (key_lsft.report_code));
+    keyboard_task();
+
+>>>>>>> firmware21
     EXPECT_REPORT(driver, (key_lsft.report_code, key_lctrl.report_code));
     keyboard_task();
 
@@ -117,6 +145,11 @@ TEST_F(KeyPress, PressLeftShiftAndControl) {
     key_lctrl.release();
 
     EXPECT_REPORT(driver, (key_lctrl.report_code));
+<<<<<<< HEAD
+=======
+    keyboard_task();
+
+>>>>>>> firmware21
     EXPECT_EMPTY_REPORT(driver);
     keyboard_task();
 }
@@ -130,13 +163,28 @@ TEST_F(KeyPress, LeftAndRightShiftCanBePressedAtTheSameTime) {
 
     key_lsft.press();
     key_rsft.press();
+<<<<<<< HEAD
     EXPECT_REPORT(driver, (key_lsft.report_code));
+=======
+    // Unfortunately modifiers are also processed in the wrong order
+    // See issue #1476 for more information
+    EXPECT_REPORT(driver, (key_lsft.report_code));
+    keyboard_task();
+
+>>>>>>> firmware21
     EXPECT_REPORT(driver, (key_lsft.report_code, key_rsft.report_code));
     keyboard_task();
 
     key_lsft.release();
     key_rsft.release();
+<<<<<<< HEAD
     EXPECT_REPORT(driver, (key_rsft.report_code));
+=======
+
+    EXPECT_REPORT(driver, (key_rsft.report_code));
+    keyboard_task();
+
+>>>>>>> firmware21
     EXPECT_EMPTY_REPORT(driver);
     keyboard_task();
 }

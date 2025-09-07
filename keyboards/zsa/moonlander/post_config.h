@@ -1,3 +1,4 @@
+<<<<<<< HEAD:keyboards/zsa/moonlander/post_config.h
 /* Copyright 2023 ZSA Technology Labs, Inc <@zsa>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,4 +24,14 @@
 #    ifndef GOODBYE_SONG
 #        define GOODBYE_SONG SONG(E__NOTE(_D5), E__NOTE(_F5), E__NOTE(_C5), Q__NOTE(_AS4))
 #    endif
+=======
+#ifdef AUDIO_ENABLE
+#ifndef STARTUP_SONG
+#    define STARTUP_SONG SONG(E__NOTE(_DS5), E__NOTE(_D5), E__NOTE(_AS4), Q__NOTE(_F5))
+#endif
+
+#ifndef GOODBYE_SONG
+#    define GOODBYE_SONG SONG(E__NOTE(_D5), E__NOTE(_F5), E__NOTE(_C5), Q__NOTE(_AS4))
+#endif
+>>>>>>> firmware21:keyboards/moonlander/post_config.h
 #endif

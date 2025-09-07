@@ -66,5 +66,9 @@ TEST_F(AutoShift, key_release_after_timeout) {
     EXPECT_EMPTY_REPORT(driver);
     regular_key.release();
     run_one_scan_loop();
+<<<<<<< HEAD
     VERIFY_AND_CLEAR(driver);
+=======
+    testing::Mock::VerifyAndClearExpectations(&driver);
+>>>>>>> firmware21
 }

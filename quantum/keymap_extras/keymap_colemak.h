@@ -27,6 +27,7 @@
 #include "keycodes.h"
 // clang-format off
 
+<<<<<<< HEAD
 #define QMK_COLEMAK_KEYCODES_VERSION "0.0.1"
 #define QMK_COLEMAK_KEYCODES_VERSION_BCD 0x00000001
 #define QMK_COLEMAK_KEYCODES_VERSION_MAJOR 0
@@ -34,6 +35,22 @@
 #define QMK_COLEMAK_KEYCODES_VERSION_PATCH 1
 
 // Aliases
+=======
+/*
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │ ` │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ - │ = │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │ Q │ W │ F │ P │ G │ J │ L │ U │ Y │ ; │ [ │ ] │  \  │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┤
+ * │      │ A │ R │ S │ T │ D │ H │ N │ E │ I │ O │ ' │        │
+ * ├──────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────────┤
+ * │        │ Z │ X │ C │ V │ B │ K │ M │ , │ . │ / │          │
+ * ├────┬───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define CM_GRV  KC_GRV  // `
 #define CM_1    KC_1    // 1
 #define CM_2    KC_2    // 2
@@ -81,6 +98,24 @@
 #define CM_COMM KC_COMM // ,
 #define CM_DOT  KC_DOT  // .
 #define CM_SLSH KC_SLSH // /
+<<<<<<< HEAD
+=======
+
+/* Shifted symbols
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │ ~ │ ! │ @ │ # │ $ │ % │ ^ │ & │ * │ ( │ ) │ _ │ + │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │   │   │   │   │   │   │   │   │   │ : │ { │ } │  |  │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┤
+ * │      │   │   │   │   │   │   │   │   │   │   │ " │        │
+ * ├──────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────────┤
+ * │        │   │   │   │   │   │   │   │ < │ > │ ? │          │
+ * ├────┬───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define CM_TILD S(CM_GRV)  // ~
 #define CM_EXLM S(CM_1)    // !
 #define CM_AT   S(CM_2)    // @
@@ -101,5 +136,41 @@
 #define CM_DQUO S(CM_QUOT) // "
 #define CM_LABK S(CM_COMM) // <
 #define CM_RABK S(CM_DOT)  // >
+<<<<<<< HEAD
 #define CM_QUES S(CM_SLSH) // ?
 
+=======
+#define CM_QUES S(CM_SLSH) // /
+
+// DEPRECATED
+#define KC_CM_Q    CM_Q
+#define KC_CM_W    CM_W
+#define KC_CM_F    CM_F
+#define KC_CM_P    CM_P
+#define KC_CM_G    CM_G
+#define KC_CM_J    CM_J
+#define KC_CM_L    CM_L
+#define KC_CM_U    CM_U
+#define KC_CM_Y    CM_Y
+#define KC_CM_SCLN CM_SCLN
+#define KC_CM_A    CM_A
+#define KC_CM_R    CM_R
+#define KC_CM_S    CM_S
+#define KC_CM_T    CM_T
+#define KC_CM_D    CM_D
+#define KC_CM_H    CM_H
+#define KC_CM_N    CM_N
+#define KC_CM_E    CM_E
+#define KC_CM_I    CM_I
+#define KC_CM_O    CM_O
+#define KC_CM_Z    CM_Z
+#define KC_CM_X    CM_X
+#define KC_CM_C    CM_C
+#define KC_CM_V    CM_V
+#define KC_CM_B    CM_B
+#define KC_CM_K    CM_K
+#define KC_CM_M    CM_M
+#define KC_CM_COMM CM_COMM
+#define KC_CM_DOT  CM_DOT
+#define KC_CM_SLSH CM_SLSH
+>>>>>>> firmware21

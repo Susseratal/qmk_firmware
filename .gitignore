@@ -4,6 +4,7 @@
 *~
 .DS_Store
 ._*
+*/.vs/
 
 # Merge files
 *.orig
@@ -31,9 +32,9 @@ firmware_list.json
 # QMK-specific
 api_data/v1
 quantum/version.h
-*.bin
+# *.bin
 *.eep
-*.hex
+# *.hex
 *.qmk
 *.uf2
 
@@ -42,11 +43,15 @@ quantum/version.h
 /keyboards/**/keymaps/*/keyboard.json
 
 # Old-style QMK Makefiles
+<<<<<<< HEAD
 /keyboards/**/Makefile
 
 # kbfirmware....
 /keyboards/**/kb.h
 /keyboards/**/kb.c
+=======
+/keyboards/*/Makefile
+>>>>>>> firmware21
 
 # Eclipse/PyCharm/Other IDE Settings
 *.iml
@@ -110,6 +115,15 @@ __pycache__
 
 # Allow to exist but don't include it in the repo
 user_song_list.h
+
+/util/wsl_downloaded
+/util/win_downloaded
+/users/
+/layouts/
+!/keyboards/*
+!/keyboards/ergodox_ez/
+!/keyboards/planck/
+!/keyboards/moonlander/
 
 # clangd
 compile_commands.json

@@ -64,6 +64,7 @@ static void         select_row(uint8_t row);
 static void         unselect_row(uint8_t row);
 
 static uint8_t mcp23018_reset_loop;
+<<<<<<< HEAD:keyboards/zsa/ergodox_ez/matrix.c
 i2c_status_t mcp23018_status = 0x20;
 static bool i2c_initialized = false;
 
@@ -107,6 +108,11 @@ uint8_t init_mcp23018(void) {
 
     return mcp23018_status;
 }
+=======
+#ifdef RGBLIGHT_ENABLE
+extern bool i2c_rgblight;
+#endif
+>>>>>>> firmware21:keyboards/ergodox_ez/matrix.c
 
 void matrix_init_custom(void) {
     // initialize row and col
@@ -137,8 +143,19 @@ bool matrix_scan_custom(matrix_row_t current_matrix[]) {
                 print("left side not responding\n");
             } else {
                 print("left side attached\n");
+<<<<<<< HEAD:keyboards/zsa/ergodox_ez/matrix.c
                 wait_ms(200);
                 mcu_reset();
+=======
+                ergodox_blink_all_leds();
+#ifdef RGB_MATRIX_ENABLE
+                rgb_matrix_init();  // re-init driver on reconnect
+#endif
+#ifdef RGBLIGHT_ENABLE
+                i2c_rgblight = true; // re-enable rgb light
+                rgblight_init();
+#endif
+>>>>>>> firmware21:keyboards/ergodox_ez/matrix.c
             }
         }
     }

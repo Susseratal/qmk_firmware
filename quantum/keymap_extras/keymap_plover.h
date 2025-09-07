@@ -27,11 +27,29 @@
 #include "keycodes.h"
 // clang-format off
 
+<<<<<<< HEAD
 #define QMK_PLOVER_KEYCODES_VERSION "0.0.1"
 #define QMK_PLOVER_KEYCODES_VERSION_BCD 0x00000001
 #define QMK_PLOVER_KEYCODES_VERSION_MAJOR 0
 #define QMK_PLOVER_KEYCODES_VERSION_MINOR 0
 #define QMK_PLOVER_KEYCODES_VERSION_PATCH 1
+=======
+/*
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │   │Num│   │   │   │   │   │   │   │   │   │   │   │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │ S │ T │ P │ H │   │ * │ F │ P │ L │ T │ D │   │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┤
+ * │      │   │ K │ W │ R │   │   │ R │ B │ G │ S │ Z │        │
+ * ├──────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────────┤
+ * │        │   │   │ A │ O │   │ E │ U │   │   │   │          │
+ * ├────┬───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+#define PV_NUM  KC_1
+>>>>>>> firmware21
 
 // Aliases
 #define PV_NUM  KC_1   

@@ -65,7 +65,10 @@ class CapsWord : public TestFixture {
    public:
     void SetUp() override {
         caps_word_off();
+<<<<<<< HEAD
         press_user_fun = press_user_default;
+=======
+>>>>>>> firmware21
     }
 };
 
@@ -127,10 +130,17 @@ TEST_F(CapsWord, CapswrdKey) {
     // No keyboard reports should be sent.
     EXPECT_NO_REPORT(driver);
 
+<<<<<<< HEAD
     tap_key(key_capswrd); // Tap the QK_CAPS_WORD_TOGGLE key.
     EXPECT_EQ(is_caps_word_on(), true);
 
     tap_key(key_capswrd); // Tap the QK_CAPS_WORD_TOGGLE key again.
+=======
+    tap_key(key_capswrd); // Tap the CAPSWRD key.
+    EXPECT_EQ(is_caps_word_on(), true);
+
+    tap_key(key_capswrd); // Tap the CAPSWRD key again.
+>>>>>>> firmware21
     EXPECT_EQ(is_caps_word_on(), false);
 
     VERIFY_AND_CLEAR(driver);
@@ -156,7 +166,12 @@ TEST_F(CapsWord, IdleTimeout) {
     // Turn on Caps Word and tap "A".
     caps_word_on();
     tap_key(key_a);
+<<<<<<< HEAD
     VERIFY_AND_CLEAR(driver);
+=======
+
+    testing::Mock::VerifyAndClearExpectations(&driver);
+>>>>>>> firmware21
 
     EXPECT_EMPTY_REPORT(driver);
     idle_for(CAPS_WORD_IDLE_TIMEOUT);
@@ -167,12 +182,21 @@ TEST_F(CapsWord, IdleTimeout) {
     EXPECT_EQ(is_caps_word_on(), false);
     EXPECT_EQ(get_mods() | get_weak_mods(), 0);
 
+<<<<<<< HEAD
     // Expect unshifted "A".
     EXPECT_REPORT(driver, (KC_A));
     EXPECT_EMPTY_REPORT(driver);
     tap_key(key_a);
     run_one_scan_loop();
     VERIFY_AND_CLEAR(driver);
+=======
+    EXPECT_EMPTY_REPORT(driver).Times(AnyNumber());
+    // Expect unshifted "A".
+    EXPECT_REPORT(driver, (KC_A));
+    tap_key(key_a);
+
+    testing::Mock::VerifyAndClearExpectations(&driver);
+>>>>>>> firmware21
 }
 
 // Tests that typing "A, 4, A, 4" produces "Shift+A, 4, Shift+A, 4".

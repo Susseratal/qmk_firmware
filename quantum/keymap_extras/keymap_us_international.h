@@ -27,6 +27,7 @@
 #include "keycodes.h"
 // clang-format off
 
+<<<<<<< HEAD
 #define QMK_US_INTERNATIONAL_KEYCODES_VERSION "0.0.1"
 #define QMK_US_INTERNATIONAL_KEYCODES_VERSION_BCD 0x00000001
 #define QMK_US_INTERNATIONAL_KEYCODES_VERSION_MAJOR 0
@@ -35,6 +36,23 @@
 
 // Aliases
 #define US_DGRV KC_GRV  // ` (dead)
+=======
+/*
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │ ` │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ - │ = │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │ Q │ W │ E │ R │ T │ Y │ U │ I │ O │ P │ [ │ ] │  \  │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┤
+ * │      │ A │ S │ D │ F │ G │ H │ J │ K │ L │ ; │ ' │        │
+ * ├──────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────────┤
+ * │        │ Z │ X │ C │ V │ B │ N │ M │ , │ . │ / │          │
+ * ├────┬───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+#define US_GRV  KC_GRV  // ` (dead)
+>>>>>>> firmware21
 #define US_1    KC_1    // 1
 #define US_2    KC_2    // 2
 #define US_3    KC_3    // 3
@@ -70,7 +88,12 @@
 #define US_K    KC_K    // K
 #define US_L    KC_L    // L
 #define US_SCLN KC_SCLN // ;
+<<<<<<< HEAD
 #define US_ACUT KC_QUOT // ´ (dead)
+=======
+#define US_QUOT KC_QUOT // ' (dead)
+// Row 4
+>>>>>>> firmware21
 #define US_Z    KC_Z    // Z
 #define US_X    KC_X    // X
 #define US_C    KC_C    // C
@@ -81,13 +104,32 @@
 #define US_COMM KC_COMM // ,
 #define US_DOT  KC_DOT  // .
 #define US_SLSH KC_SLSH // /
+<<<<<<< HEAD
 #define US_DTIL S(US_DGRV) // ~ (dead)
+=======
+
+/* Shifted symbols
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │ ~ │ ! │ @ │ # │ $ │ % │ ^ │ & │ * │ ( │ ) │ _ │ + │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │   │   │   │   │   │   │   │   │   │   │ { │ } │  |  │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┤
+ * │      │   │   │   │   │   │   │   │   │   │ : │ " │        │
+ * ├──────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────────┤
+ * │        │   │   │   │   │   │   │   │ < │ > │ ? │          │
+ * ├────┬───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+#define US_TILD S(US_GRV)  // ~ (dead)
+>>>>>>> firmware21
 #define US_EXLM S(US_1)    // !
-#define US_AT   S(US_2)    // @
+#define US_AT   S(US_2)    // "
 #define US_HASH S(US_3)    // #
 #define US_DLR  S(US_4)    // $
 #define US_PERC S(US_5)    // %
-#define US_DCIR S(US_6)    // ^ (dead)
+#define US_CIRC S(US_6)    // ^
 #define US_AMPR S(US_7)    // &
 #define US_ASTR S(US_8)    // *
 #define US_LPRN S(US_9)    // (
@@ -98,10 +140,33 @@
 #define US_RCBR S(US_RBRC) // }
 #define US_PIPE S(US_BSLS) // |
 #define US_COLN S(US_SCLN) // :
+<<<<<<< HEAD
 #define US_DIAE S(US_ACUT) // ¨ (dead)
 #define US_LABK S(US_COMM) // <
 #define US_RABK S(US_DOT)  // >
 #define US_QUES S(US_SLSH) // ?
+=======
+#define US_DQUO S(US_QUOT) // " (dead)
+// Row 4
+#define US_LABK S(US_COMM) // <
+#define US_RABK S(US_DOT)  // >
+#define US_QUES S(US_SLSH) // ?
+
+/* AltGr symbols
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │   │ ¡ │ ² │ ³ │ ¤ │ € │ ¼ │ ½ │ ¾ │ ‘ │ ’ │ ¥ │ × │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │ Ä │ Å │ É │ ® │ Þ │ Ü │ Ú │ Í │ Ó │ Ö │ « │ » │  ¬  │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┤
+ * │      │ Á │ ß │ Ð │   │   │   │   │   │ Ø │ ¶ │ ´ │        │
+ * ├──────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────────┤
+ * │        │ Æ │   │ © │   │   │ Ñ │ µ │ Ç │   │ ¿ │          │
+ * ├────┬───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define US_IEXL ALGR(US_1)    // ¡
 #define US_SUP2 ALGR(US_2)    // ²
 #define US_SUP3 ALGR(US_3)    // ³
@@ -132,19 +197,47 @@
 #define US_ETH  ALGR(US_D)    // Ð
 #define US_OSTR ALGR(US_L)    // Ø
 #define US_PILC ALGR(US_SCLN) // ¶
+<<<<<<< HEAD
 #define US_NDAC ALGR(US_ACUT) // ´
+=======
+#define US_ACUT ALGR(US_QUOT) // ´
+// Row 4
+>>>>>>> firmware21
 #define US_AE   ALGR(US_Z)    // Æ
 #define US_COPY ALGR(US_C)    // ©
 #define US_NTIL ALGR(US_N)    // Ñ
 #define US_MICR ALGR(US_M)    // µ
 #define US_CCED ALGR(US_COMM) // Ç
 #define US_IQUE ALGR(US_SLSH) // ¿
+<<<<<<< HEAD
+=======
+
+/* Shift+AltGr symbols
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │   │ ¹ │   │   │ £ │   │   │   │   │   │   │   │ ÷ │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │   │   │   │   │   │   │   │   │   │   │   │   │  ¦  │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┤
+ * │      │   │ § │   │   │   │   │   │   │   │ ° │ ¨ │        │
+ * ├──────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────────┤
+ * │        │   │   │ ¢ │   │   │   │   │   │   │   │          │
+ * ├────┬───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define US_SUP1 S(ALGR(US_1))    // ¹
 #define US_PND  S(ALGR(US_4))    // £
 #define US_DIV  S(ALGR(US_EQL))  // ÷
 #define US_BRKP S(ALGR(US_BSLS)) // ¦
 #define US_SECT S(ALGR(US_S))    // §
 #define US_DEG  S(ALGR(US_SCLN)) // °
+<<<<<<< HEAD
 #define US_NDDR S(ALGR(US_ACUT)) // ¨
+=======
+#define US_DIAE S(ALGR(US_QUOT)) // ¨
+// Row 4
+>>>>>>> firmware21
 #define US_CENT S(ALGR(US_C))    // ¢
 

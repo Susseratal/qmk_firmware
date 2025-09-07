@@ -27,6 +27,7 @@
 #include "keycodes.h"
 // clang-format off
 
+<<<<<<< HEAD
 #define QMK_BELGIAN_KEYCODES_VERSION "0.0.1"
 #define QMK_BELGIAN_KEYCODES_VERSION_BCD 0x00000001
 #define QMK_BELGIAN_KEYCODES_VERSION_MAJOR 0
@@ -34,6 +35,22 @@
 #define QMK_BELGIAN_KEYCODES_VERSION_PATCH 1
 
 // Aliases
+=======
+/*
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │ ² │ & │ é │ " │ ' │ ( │ § │ è │ ! │ ç │ à │ ) │ - │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │ A │ Z │ E │ R │ T │ Y │ U │ I │ O │ P │ ^ │ $ │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │ Q │ S │ D │ F │ G │ H │ J │ K │ L │ M │ ù │ µ │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │ < │ W │ X │ C │ V │ B │ N │ , │ ; │ : │ = │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define BE_SUP2 KC_GRV  // ²
 #define BE_AMPR KC_1    // &
 #define BE_EACU KC_2    // é
@@ -82,6 +99,24 @@
 #define BE_SCLN KC_COMM // ;
 #define BE_COLN KC_DOT  // :
 #define BE_EQL  KC_SLSH // =
+<<<<<<< HEAD
+=======
+
+/* Shifted symbols
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │ ³ │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ ° │ _ │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │   │   │   │   │   │   │   │   │   │   │ ¨ │ * │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │   │   │   │   │   │   │   │   │   │   │ % │ £ │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │ > │   │   │   │   │   │   │ ? │ . │ / │ + │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define BE_SUP3 S(BE_SUP2) // ³
 #define BE_1    S(BE_AMPR) // 1
 #define BE_2    S(BE_EACU) // 2
@@ -104,6 +139,24 @@
 #define BE_DOT  S(BE_SCLN) // .
 #define BE_SLSH S(BE_COLN) // /
 #define BE_PLUS S(BE_EQL)  // +
+<<<<<<< HEAD
+=======
+
+/* AltGr symbols
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │   │ | │ @ │ # │   │   │ ^ │   │   │ { │ } │   │   │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │   │   │ € │   │   │   │   │   │   │   │ [ │ ] │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │   │   │   │   │   │   │   │   │   │   │ ´ │ ` │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │ \ │   │   │   │   │   │   │   │   │   │ ~ │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define BE_PIPE ALGR(BE_AMPR) // |
 #define BE_AT   ALGR(BE_EACU) // @
 #define BE_HASH ALGR(BE_DQUO) // #
@@ -118,3 +171,18 @@
 #define BE_BSLS ALGR(BE_LABK) // (backslash)
 #define BE_TILD ALGR(BE_EQL)  // ~
 
+<<<<<<< HEAD
+=======
+// DEPRECATED
+#define BE_AMP  BE_AMPR
+#define BE_APOS BE_QUOT
+#define BE_PARA BE_SECT
+#define BE_MU   BE_MICR
+#define BE_LESS BE_LABK
+#define BE_OVRR BE_DEG
+#define BE_UMLT BE_DIAE
+#define BE_GRTR BE_RABK
+#define BE_LSBR BE_LBRC
+#define BE_RSBR BE_RBRC
+#define BE_TILT BE_TILD
+>>>>>>> firmware21

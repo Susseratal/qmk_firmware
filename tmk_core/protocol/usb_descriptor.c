@@ -39,6 +39,9 @@
 #include "util.h"
 #include "report.h"
 #include "usb_descriptor.h"
+#ifdef WEBUSB_ENABLE
+#    include "webusb_descriptor.h"
+#endif
 #include "usb_descriptor_common.h"
 
 #ifdef JOYSTICK_ENABLE
@@ -489,6 +492,74 @@ const USB_Descriptor_HIDReport_Datatype_t PROGMEM ConsoleReport[] = {
 };
 #endif
 
+<<<<<<< HEAD
+=======
+#ifdef WEBUSB_ENABLE
+const USB_Descriptor_BOS_t PROGMEM BOSDescriptor = BOS_DESCRIPTOR(
+        (MS_OS_20_PLATFORM_DESCRIPTOR(MS_OS_20_VENDOR_CODE, MS_OS_20_DESCRIPTOR_SET_TOTAL_LENGTH))
+        (WEBUSB_PLATFORM_DESCRIPTOR(WEBUSB_VENDOR_CODE, WEBUSB_LANDING_PAGE_INDEX))
+);
+#endif
+#ifdef JOYSTICK_ENABLE
+const USB_Descriptor_HIDReport_Datatype_t PROGMEM JoystickReport[] = {
+    HID_RI_USAGE_PAGE(8, 0x01),     // Generic Desktop
+    HID_RI_USAGE(8, 0x04),          // Joystick
+    HID_RI_COLLECTION(8, 0x01),     // Application
+        HID_RI_COLLECTION(8, 0x00), // Physical
+#    if JOYSTICK_AXES_COUNT > 0
+            HID_RI_USAGE_PAGE(8, 0x01), // Generic Desktop
+            HID_RI_USAGE(8, 0x30),      // X
+#        if JOYSTICK_AXES_COUNT > 1
+            HID_RI_USAGE(8, 0x31),      // Y
+#        endif
+#        if JOYSTICK_AXES_COUNT > 2
+            HID_RI_USAGE(8, 0x32),      // Z
+#        endif
+#        if JOYSTICK_AXES_COUNT > 3
+            HID_RI_USAGE(8, 0x33),      // Rx
+#        endif
+#        if JOYSTICK_AXES_COUNT > 4
+            HID_RI_USAGE(8, 0x34),      // Ry
+#        endif
+#        if JOYSTICK_AXES_COUNT > 5
+            HID_RI_USAGE(8, 0x35),      // Rz
+#        endif
+#        if JOYSTICK_AXES_RESOLUTION == 8
+            HID_RI_LOGICAL_MINIMUM(8, -JOYSTICK_RESOLUTION),
+            HID_RI_LOGICAL_MAXIMUM(8, JOYSTICK_RESOLUTION),
+            HID_RI_REPORT_COUNT(8, JOYSTICK_AXES_COUNT),
+            HID_RI_REPORT_SIZE(8, 0x08),
+#        else
+            HID_RI_LOGICAL_MINIMUM(16, -JOYSTICK_RESOLUTION),
+            HID_RI_LOGICAL_MAXIMUM(16, JOYSTICK_RESOLUTION),
+            HID_RI_REPORT_COUNT(8, JOYSTICK_AXES_COUNT),
+            HID_RI_REPORT_SIZE(8, 0x10),
+#        endif
+            HID_RI_INPUT(8, HID_IOF_DATA | HID_IOF_VARIABLE | HID_IOF_ABSOLUTE),
+#    endif
+
+#    if JOYSTICK_BUTTON_COUNT > 0
+            HID_RI_USAGE_PAGE(8, 0x09), // Button
+            HID_RI_USAGE_MINIMUM(8, 0x01),
+            HID_RI_USAGE_MAXIMUM(8, JOYSTICK_BUTTON_COUNT),
+            HID_RI_LOGICAL_MINIMUM(8, 0x00),
+            HID_RI_LOGICAL_MAXIMUM(8, 0x01),
+            HID_RI_REPORT_COUNT(8, JOYSTICK_BUTTON_COUNT),
+            HID_RI_REPORT_SIZE(8, 0x01),
+            HID_RI_INPUT(8, HID_IOF_DATA | HID_IOF_VARIABLE | HID_IOF_ABSOLUTE),
+
+#        if (JOYSTICK_BUTTON_COUNT % 8) != 0
+            HID_RI_REPORT_COUNT(8, 8 - (JOYSTICK_BUTTON_COUNT % 8)),
+            HID_RI_REPORT_SIZE(8, 0x01),
+            HID_RI_INPUT(8, HID_IOF_CONSTANT),
+#        endif
+#    endif
+        HID_RI_END_COLLECTION(0),
+    HID_RI_END_COLLECTION(0)
+};
+#endif
+
+>>>>>>> firmware21
 /*
  * Device descriptor
  */
@@ -497,7 +568,11 @@ const USB_Descriptor_Device_t PROGMEM DeviceDescriptor = {
         .Size                   = sizeof(USB_Descriptor_Device_t),
         .Type                   = DTYPE_Device
     },
+#if defined(WEBUSB_ENABLE) && !defined(STENO_ENABLE)
+    .USBSpecification           = VERSION_BCD(2, 1, 0),
+#else
     .USBSpecification           = VERSION_BCD(2, 0, 0),
+#endif
 
 #if VIRTSER_ENABLE
     .Class                      = USB_CSCP_IADDeviceClass,
@@ -761,6 +836,38 @@ const USB_Descriptor_Configuration_t PROGMEM ConfigurationDescriptor = {
         .EndpointSize           = CONSOLE_EPSIZE,
         .PollingIntervalMS      = 0x01
     },
+#endif
+
+#ifdef WEBUSB_ENABLE
+            /*
+             * Webusb
+             */
+            .WebUSB_Interface = {.Header = {.Size = sizeof(USB_Descriptor_Interface_t), .Type = DTYPE_Interface},
+
+                                 .InterfaceNumber  = INTERFACE_ID_WebUSB,
+                                 .AlternateSetting = 0x00,
+
+                                 .TotalEndpoints = 2,
+
+                                 .Class    = USB_CSCP_VendorSpecificClass,
+                                 .SubClass = 0x00,
+                                 .Protocol = 0x00,
+
+                                 .InterfaceStrIndex = NO_DESCRIPTOR},
+
+            .WebUSB_DataInEndpoint = {.Header = {.Size = sizeof(USB_Descriptor_Endpoint_t), .Type = DTYPE_Endpoint},
+
+                                      .EndpointAddress   = WEBUSB_IN_EPADDR,
+                                      .Attributes        = (EP_TYPE_INTERRUPT | ENDPOINT_ATTR_NO_SYNC | ENDPOINT_USAGE_DATA),
+                                      .EndpointSize      = WEBUSB_EPSIZE,
+                                      .PollingIntervalMS = 0x05},
+
+            .WebUSB_DataOutEndpoint = {.Header = {.Size = sizeof(USB_Descriptor_Endpoint_t), .Type = DTYPE_Endpoint},
+
+                                       .EndpointAddress   = WEBUSB_OUT_EPADDR,
+                                       .Attributes        = (EP_TYPE_INTERRUPT | ENDPOINT_ATTR_NO_SYNC | ENDPOINT_USAGE_DATA),
+                                       .EndpointSize      = WEBUSB_EPSIZE,
+                                       .PollingIntervalMS = 0x05},
 #endif
 
 #ifdef MIDI_ENABLE
@@ -1207,6 +1314,13 @@ uint16_t get_usb_descriptor(const uint16_t wValue, const uint16_t wIndex, const 
             Size    = sizeof(USB_Descriptor_Device_t);
 
             break;
+#ifdef WEBUSB_ENABLE
+        case DTYPE_BOS:
+            Address = &BOSDescriptor;
+            Size    = pgm_read_byte(&BOSDescriptor.TotalLength);
+
+            break;
+#endif
         case DTYPE_Configuration:
             Address = &ConfigurationDescriptor;
             Size    = sizeof(USB_Descriptor_Configuration_t);

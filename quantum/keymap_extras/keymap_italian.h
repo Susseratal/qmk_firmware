@@ -27,6 +27,7 @@
 #include "keycodes.h"
 // clang-format off
 
+<<<<<<< HEAD
 #define QMK_ITALIAN_KEYCODES_VERSION "0.0.1"
 #define QMK_ITALIAN_KEYCODES_VERSION_BCD 0x00000001
 #define QMK_ITALIAN_KEYCODES_VERSION_MAJOR 0
@@ -34,6 +35,22 @@
 #define QMK_ITALIAN_KEYCODES_VERSION_PATCH 1
 
 // Aliases
+=======
+/*
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │ \ │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ ' │ ì │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │ Q │ W │ E │ R │ T │ Y │ U │ I │ O │ P │ è │ + │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │ A │ S │ D │ F │ G │ H │ J │ K │ L │ ò │ à │ ù │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │ < │ Z │ X │ C │ V │ B │ N │ M │ , │ . │ - │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define IT_BSLS KC_GRV  // (backslash)
 #define IT_1    KC_1    // 1
 #define IT_2    KC_2    // 2
@@ -82,6 +99,24 @@
 #define IT_COMM KC_COMM // ,
 #define IT_DOT  KC_DOT  // .
 #define IT_MINS KC_SLSH // -
+<<<<<<< HEAD
+=======
+
+/* Shifted symbols
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │ | │ ! │ " │ £ │ $ │ % │ & │ / │ ( │ ) │ = │ ? │ ^ │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │   │   │   │   │   │   │   │   │   │   │ é │ * │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │   │   │   │   │   │   │   │   │   │ ç │ ° │ § │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │ > │   │   │   │   │   │   │   │ ; │ : │ _ │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define IT_PIPE S(IT_BSLS) // |
 #define IT_EXLM S(IT_1)    // !
 #define IT_DQUO S(IT_2)    // "
@@ -104,6 +139,7 @@
 #define IT_COLN S(IT_DOT)  // :
 #define IT_SCLN S(IT_COMM) // ;
 #define IT_UNDS S(IT_MINS) // _
+<<<<<<< HEAD
 #define IT_EURO ALGR(IT_E)    // €
 #define IT_LBRC ALGR(IT_EGRV) // [
 #define IT_RBRC ALGR(IT_PLUS) // ]
@@ -112,3 +148,62 @@
 #define IT_LCBR S(ALGR(IT_EGRV)) // {
 #define IT_RCBR S(ALGR(IT_PLUS)) // }
 
+=======
+
+/* AltGr symbols
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │   │   │   │   │   │   │   │   │   │   │   │   │   │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │   │   │ € │   │   │   │   │   │   │   │ [ │ ] │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │   │   │   │   │   │   │   │   │   │ @ │ # │   │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │   │   │   │   │   │   │   │   │   │   │   │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 2
+#define IT_EURO ALGR(IT_E)       // €
+#define IT_LBRC ALGR(IT_EGRV)    // [
+#define IT_RBRC ALGR(IT_PLUS)    // ]
+// Row 3
+#define IT_AT   ALGR(IT_OGRV)    // @
+#define IT_HASH ALGR(IT_AGRV)    // #
+
+/* Shift+AltGr symbols
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │   │   │   │   │   │   │   │   │   │   │   │   │   │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │   │   │   │   │   │   │   │   │   │   │ { │ } │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │   │   │   │   │   │   │   │   │   │   │   │   │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │   │   │   │   │   │   │   │   │   │   │   │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 2
+#define IT_LCBR S(ALGR(IT_EGRV)) // {
+#define IT_RCBR S(ALGR(IT_PLUS)) // }
+
+// DEPRECATED
+#define IT_BKSL IT_BSLS
+#define IT_APOS IT_QUOT
+#define IT_IACC IT_IGRV
+#define IT_EACC IT_EGRV
+#define IT_OACC IT_OGRV
+#define IT_AACC IT_AGRV
+#define IT_UACC IT_UGRV
+#define IT_LESS IT_LABK
+#define IT_DQOT IT_DQUO
+#define IT_STRL IT_PND
+#define IT_QST  IT_QUES
+#define IT_CRC  IT_CIRC
+#define IT_MORE IT_RABK
+#define IT_SHRP IT_HASH
+
+#define IT_X_PLUS X_RBRACKET
+#define IT_ACUT
+>>>>>>> firmware21

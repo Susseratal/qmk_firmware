@@ -634,6 +634,21 @@ ifeq ($(strip $(LED_TABLES)), yes)
     SRC += $(QUANTUM_DIR)/led_tables.c
 endif
 
+<<<<<<< HEAD
+=======
+ifeq ($(strip $(TERMINAL_ENABLE)), yes)
+    SRC += $(QUANTUM_DIR)/process_keycode/process_terminal.c
+    OPT_DEFS += -DTERMINAL_ENABLE
+    OPT_DEFS += -DUSER_PRINT
+endif
+
+ifeq ($(strip $(ORYX_ENABLE)), yes)
+    RAW_ENABLE := yes
+    SRC += $(QUANTUM_DIR)/oryx.c
+    OPT_DEFS += -DORYX_ENABLE
+endif
+
+>>>>>>> firmware21
 ifeq ($(strip $(VIA_ENABLE)), yes)
     DYNAMIC_KEYMAP_ENABLE := yes
     RAW_ENABLE := yes

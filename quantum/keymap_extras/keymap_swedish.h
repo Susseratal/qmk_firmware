@@ -27,6 +27,7 @@
 #include "keycodes.h"
 // clang-format off
 
+<<<<<<< HEAD
 #define QMK_SWEDISH_KEYCODES_VERSION "0.0.1"
 #define QMK_SWEDISH_KEYCODES_VERSION_BCD 0x00000001
 #define QMK_SWEDISH_KEYCODES_VERSION_MAJOR 0
@@ -34,6 +35,22 @@
 #define QMK_SWEDISH_KEYCODES_VERSION_PATCH 1
 
 // Aliases
+=======
+/*
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │ § │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ + │ ´ │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │ Q │ W │ E │ R │ T │ Y │ U │ I │ O │ P │ Å │ ¨ │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │ A │ S │ D │ F │ G │ H │ J │ K │ L │ Ö │ Ä │ ' │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │ < │ Z │ X │ C │ V │ B │ N │ M │ , │ . │ - │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define SE_SECT KC_GRV  // §
 #define SE_1    KC_1    // 1
 #define SE_2    KC_2    // 2
@@ -82,6 +99,24 @@
 #define SE_COMM KC_COMM // ,
 #define SE_DOT  KC_DOT  // .
 #define SE_MINS KC_SLSH // -
+<<<<<<< HEAD
+=======
+
+/* Shifted symbols
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │ ½ │ ! │ " │ # │ ¤ │ % │ & │ / │ ( │ ) │ = │ ? │ ` │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │   │   │   │   │   │   │   │   │   │   │   │ ^ │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │   │   │   │   │   │   │   │   │   │   │   │ * │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │ > │   │   │   │   │   │   │   │ ; │ : │ _ │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define SE_HALF S(SE_SECT) // ½
 #define SE_EXLM S(SE_1)    // !
 #define SE_DQUO S(SE_2)    // "
@@ -101,6 +136,24 @@
 #define SE_SCLN S(SE_COMM) // ;
 #define SE_COLN S(SE_DOT)  // :
 #define SE_UNDS S(SE_MINS) // _
+<<<<<<< HEAD
+=======
+
+/* AltGr symbols
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │   │   │ @ │ £ │ $ │ € │   │ { │ [ │ ] │ } │ \ │   │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │   │   │   │   │   │   │   │   │   │   │   │ ~ │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │   │   │   │   │   │   │   │   │   │   │   │   │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │ | │   │   │   │   │   │   │ µ │   │   │   │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define SE_AT   ALGR(SE_2)    // @
 #define SE_PND  ALGR(SE_3)    // £
 #define SE_DLR  ALGR(SE_4)    // $
@@ -114,3 +167,31 @@
 #define SE_PIPE ALGR(SE_LABK) // |
 #define SE_MICR ALGR(SE_M)    // µ
 
+<<<<<<< HEAD
+=======
+// DEPRECATED
+#include "keymap_nordic.h"
+
+#define SE_OSLH SE_ODIA
+#define SE_APOS SE_QUOT
+#define SE_LESS SE_LABK
+#define SE_QUO2 SE_DQUO
+#define SE_BULT SE_CURR
+#define SE_GRTR SE_RABK
+#define SE_AA   SE_ARNG
+#define SE_AE   SE_ADIA
+#define SE_AM   SE_ARNG
+#define SE_MU   SE_MICR
+// Swedish macOS symbols (not vetted)
+#define SE_ACUT_MAC SE_ACUT
+#define SE_APOS_MAC SE_LABK
+#define SE_AT_MAC   SE_ADIA
+#define SE_BSLS_MAC S(SE_LCBR)
+#define SE_DLR_MAC  SE_CURR
+#define SE_GRV_MAC  SE_BSLS
+#define SE_GRTR_MAC SE_HALF
+#define SE_LCBR_MAC S(SE_LBRC)
+#define SE_LESS_MAC SE_SECT
+#define SE_PIPE_MAC SE_LCBR
+#define SE_RCBR_MAC S(SE_RBRC)
+>>>>>>> firmware21

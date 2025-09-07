@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+<<<<<<< HEAD:keyboards/zsa/moonlander/moonlander.c
 
 #include QMK_KEYBOARD_H
 
@@ -28,12 +29,18 @@
 #ifdef COMMUNITY_MODULE_DEFAULTS_ENABLE
 #     include "defaults.h"
 #endif
+=======
+
+#include "moonlander.h"
+#include "raw_hid.h"
+>>>>>>> firmware21:keyboards/moonlander/moonlander.c
 
 keyboard_config_t keyboard_config;
 
 bool mcp23018_leds[3] = {0, 0, 0};
 bool is_launching     = false;
 
+<<<<<<< HEAD:keyboards/zsa/moonlander/moonlander.c
 #ifdef CHORDAL_HOLD
 // On Moonlander, the default definition of `chordal_hold_layout` in keyboard.c
 // is unusable, since it unfortunately gets generated from the Halfmoon's
@@ -51,6 +58,19 @@ __attribute__((weak)) const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] P
   'L', 'L', 'L', 'L', 'L', 'L', 'R', 'R', 'R', 'R', 'R', 'R',
   'L', 'L', 'L', 'R', 'R', 'R'
 );
+=======
+#ifdef DYNAMIC_MACRO_ENABLE
+static bool is_dynamic_recording = false;
+
+void dynamic_macro_record_start_user(void) {
+    is_dynamic_recording = true;
+}
+
+void dynamic_macro_record_end_user(int8_t direction) {
+    is_dynamic_recording = false;
+    ML_LED_3(false);
+}
+>>>>>>> firmware21:keyboards/moonlander/moonlander.c
 #endif
 
 #if defined(DEFERRED_EXEC_ENABLE)
@@ -205,6 +225,7 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
             break;
     }
 
+<<<<<<< HEAD:keyboards/zsa/moonlander/moonlander.c
     STATUS_LED_1(LED_1);
     STATUS_LED_2(LED_2);
     STATUS_LED_3(LED_3);
@@ -215,6 +236,16 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
 #    endif
 #endif
 
+=======
+    ML_LED_1(LED_1);
+    ML_LED_2(LED_2);
+    ML_LED_3(LED_3);
+    ML_LED_4(LED_4);
+    ML_LED_5(LED_5);
+#    if !defined(CAPS_LOCK_STATUS)
+    ML_LED_6(LED_6);
+#    endif
+>>>>>>> firmware21:keyboards/moonlander/moonlander.c
     return state;
 }
 
@@ -382,8 +413,17 @@ const uint8_t music_map[MATRIX_ROWS][MATRIX_COLS] = {
 #endif
 
 #ifdef CAPS_LOCK_STATUS
+<<<<<<< HEAD:keyboards/zsa/moonlander/moonlander.c
 void led_update_ports(led_t led_state) {
     STATUS_LED_6(led_state.caps_lock);
+=======
+bool led_update_kb(led_t led_state) {
+    bool res = led_update_user(led_state);
+    if (res) {
+        ML_LED_6(led_state.caps_lock);
+    }
+    return res;
+>>>>>>> firmware21:keyboards/moonlander/moonlander.c
 }
 #endif
 
@@ -415,7 +455,6 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 keyboard_config.disable_layer_led ^= 1;
                 if (keyboard_config.disable_layer_led) rgb_matrix_set_color_all(0, 0, 0);
-                eeconfig_update_kb(keyboard_config.raw);
             }
             break;
         case RGB_TOG:
@@ -424,15 +463,12 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 switch (rgb_matrix_get_flags()) {
                     case LED_FLAG_ALL: {
                         rgb_matrix_set_flags(LED_FLAG_NONE);
-                        keyboard_config.rgb_matrix_enable = false;
                         rgb_matrix_set_color_all(0, 0, 0);
                     } break;
                     default: {
                         rgb_matrix_set_flags(LED_FLAG_ALL);
-                        keyboard_config.rgb_matrix_enable = true;
                     } break;
                 }
-                eeconfig_update_kb(keyboard_config.raw);
             }
             return false;
 #endif
@@ -448,6 +484,7 @@ void keyboard_post_init_kb(void) {
         keyboard_config.led_level_res = 0b11;
         eeconfig_update_kb(keyboard_config.raw);
     }
+<<<<<<< HEAD:keyboards/zsa/moonlander/moonlander.c
 #ifdef RGB_MATRIX_ENABLE
     if (rgb_matrix_get_mode() >= RGB_MATRIX_EFFECT_MAX) {
         rgb_matrix_mode(RGB_MATRIX_NONE);
@@ -463,11 +500,17 @@ void keyboard_post_init_kb(void) {
     defer_exec(500, startup_exec, NULL);
 #endif
     keyboard_post_init_user();
+=======
+    matrix_init_user();
+>>>>>>> firmware21:keyboards/moonlander/moonlander.c
 }
 
 void eeconfig_init_kb(void) { // EEPROM is getting reset!
     keyboard_config.raw               = 0;
+<<<<<<< HEAD:keyboards/zsa/moonlander/moonlander.c
     keyboard_config.rgb_matrix_enable = true;
+=======
+>>>>>>> firmware21:keyboards/moonlander/moonlander.c
     keyboard_config.led_level         = true;
     keyboard_config.led_level_res     = 0b11;
     eeconfig_update_kb(keyboard_config.raw);

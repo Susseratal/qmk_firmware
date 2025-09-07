@@ -1,5 +1,16 @@
 #include <limits.h>
 #include <stdint.h>
+<<<<<<< HEAD
+=======
+#ifdef ORYX_ENABLE
+#    include "oryx.h"
+#endif
+#ifdef DEBUG_ACTION
+#    include "debug.h"
+#else
+#    include "nodebug.h"
+#endif
+>>>>>>> firmware21
 
 #include "keyboard.h"
 #include "action.h"
@@ -132,7 +143,14 @@ __attribute__((weak)) layer_state_t layer_state_set_modules(layer_state_t state)
 void layer_state_set(layer_state_t state) {
     state = layer_state_set_modules(state);
     state = layer_state_set_kb(state);
+<<<<<<< HEAD
     ac_dprintf("layer_state: ");
+=======
+#ifdef ORYX_ENABLE
+    layer_state_set_oryx(state);
+#endif
+    dprint("layer_state: ");
+>>>>>>> firmware21
     layer_debug();
     ac_dprintf(" to ");
     layer_state = state;

@@ -5,8 +5,13 @@ permissions:
 
 on:
   push:
+<<<<<<< HEAD
     branches:
     - firmware[0-9]+
+=======
+    paths-ignore:
+      - '**.md'
+>>>>>>> firmware21
   pull_request:
     paths:
     - 'builddefs/**'

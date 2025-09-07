@@ -52,6 +52,7 @@ class TestFixture : public testing::Test {
             tap_key(key);
         }
     }
+<<<<<<< HEAD
 
     /**
      * @brief Taps a combo with `delay_ms` delay between press and release.
@@ -59,6 +60,8 @@ class TestFixture : public testing::Test {
      * Example: `tap_combo({key_a, key_b})` to tap the chord A + B.
      */
     void tap_combo(const std::vector<KeymapKey>& chord_keys, unsigned delay_ms = 1);
+=======
+>>>>>>> firmware21
 
     void run_one_scan_loop();
     void idle_for(unsigned ms);

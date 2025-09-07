@@ -51,6 +51,9 @@
 #        define USB_ENDPOINTS_ARE_REORDERABLE
 #    endif
 #endif
+#ifdef WEBUSB_ENABLE
+#     include "webusb_descriptor.h"
+#endif
 
 /*
  * USB descriptor structure
@@ -97,6 +100,12 @@ typedef struct {
     USB_Descriptor_Interface_t Console_Interface;
     USB_HID_Descriptor_HID_t   Console_HID;
     USB_Descriptor_Endpoint_t  Console_INEndpoint;
+#endif
+
+#ifdef WEBUSB_ENABLE
+    USB_Descriptor_Interface_t            WebUSB_Interface;
+    USB_Descriptor_Endpoint_t             WebUSB_DataInEndpoint;
+    USB_Descriptor_Endpoint_t             WebUSB_DataOutEndpoint;
 #endif
 
 #ifdef MIDI_ENABLE
@@ -186,7 +195,15 @@ enum usb_interfaces {
     CDI_INTERFACE,
 #endif
 
+<<<<<<< HEAD
 #if defined(JOYSTICK_ENABLE) && !defined(JOYSTICK_SHARED_EP)
+=======
+#ifdef WEBUSB_ENABLE
+    INTERFACE_ID_WebUSB,
+#endif
+
+#if defined(JOYSTICK_ENABLE)
+>>>>>>> firmware21
     JOYSTICK_INTERFACE,
 #endif
 
@@ -254,6 +271,16 @@ enum usb_endpoints {
 #    endif
 #endif
 
+<<<<<<< HEAD
+=======
+#ifdef WEBUSB_ENABLE
+    WEBUSB_IN_EPNUM  = NEXT_EPNUM,
+    WEBUSB_OUT_EPNUM = NEXT_EPNUM,
+#    define WEBUSB_IN_EPADDR         (ENDPOINT_DIR_IN  | WEBUSB_IN_EPNUM)
+#    define WEBUSB_OUT_EPADDR        (ENDPOINT_DIR_OUT | WEBUSB_OUT_EPNUM)
+#endif
+
+>>>>>>> firmware21
 #ifdef JOYSTICK_ENABLE
 #    if !defined(JOYSTICK_SHARED_EP)
     JOYSTICK_IN_EPNUM = NEXT_EPNUM,
@@ -291,6 +318,7 @@ enum usb_endpoints {
 #define MIDI_STREAM_EPSIZE 64
 #define CDC_NOTIFICATION_EPSIZE 8
 #define CDC_EPSIZE 16
+#define WEBUSB_EPSIZE 64
 #define JOYSTICK_EPSIZE 8
 #define DIGITIZER_EPSIZE 8
 

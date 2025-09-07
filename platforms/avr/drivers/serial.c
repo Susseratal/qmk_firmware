@@ -53,8 +53,13 @@
 #        define EICRx EICRA
 #    endif
 
+<<<<<<< HEAD
+// ATmegaxxU2 specific config
+#    if defined(__AVR_ATmega16U2__) || defined(__AVR_ATmega32U2__)
+=======
 // ATmegaxxU2/AT90USB162 specific config
 #    if defined(__AVR_ATmega16U2__) || defined(__AVR_ATmega32U2__) || defined(__AVR_AT90USB162__)
+>>>>>>> 0.12.52~1
 // PD4(INT5), PD6(INT6), PD7(INT7), PC7(INT4)
 #        if SOFT_SERIAL_PIN == D4
 #            define EIMSK_BIT _BV(INT5)

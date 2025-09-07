@@ -48,5 +48,9 @@ TEST_F(RetroTapping, tap_and_hold_mod_tap_hold_key) {
     EXPECT_EMPTY_REPORT(driver);
     mod_tap_hold_key.release();
     run_one_scan_loop();
+<<<<<<< HEAD
     VERIFY_AND_CLEAR(driver);
+=======
+    testing::Mock::VerifyAndClearExpectations(&driver);
+>>>>>>> firmware21
 }

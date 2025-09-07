@@ -27,6 +27,7 @@
 #include "keycodes.h"
 // clang-format off
 
+<<<<<<< HEAD
 #define QMK_FRENCH_KEYCODES_VERSION "0.0.1"
 #define QMK_FRENCH_KEYCODES_VERSION_BCD 0x00000001
 #define QMK_FRENCH_KEYCODES_VERSION_MAJOR 0
@@ -34,6 +35,22 @@
 #define QMK_FRENCH_KEYCODES_VERSION_PATCH 1
 
 // Aliases
+=======
+/*
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │ ² │ & │ é │ " │ ' │ ( │ - │ è │ _ │ ç │ à │ ) │ = │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │ A │ Z │ E │ R │ T │ Y │ U │ I │ O │ P │ ^ │ $ │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │ Q │ S │ D │ F │ G │ H │ J │ K │ L │ M │ ù │ * │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │ < │ W │ X │ C │ V │ B │ N │ , │ ; │ : │ ! │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define FR_SUP2 KC_GRV  // ²
 #define FR_AMPR KC_1    // &
 #define FR_EACU KC_2    // é
@@ -82,6 +99,24 @@
 #define FR_SCLN KC_COMM // ;
 #define FR_COLN KC_DOT  // :
 #define FR_EXLM KC_SLSH // !
+<<<<<<< HEAD
+=======
+
+/* Shifted symbols
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │   │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ ° │ + │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │   │   │   │   │   │   │   │   │   │   │ ¨ │ £ │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │   │   │   │   │   │   │   │   │   │   │ % │ µ │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │ > │   │   │   │   │   │   │ ? │ . │ / │ § │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define FR_1    S(FR_AMPR) // 1
 #define FR_2    S(FR_EACU) // 2
 #define FR_3    S(FR_DQUO) // 3
@@ -103,6 +138,24 @@
 #define FR_DOT  S(FR_SCLN) // .
 #define FR_SLSH S(FR_COLN) // /
 #define FR_SECT S(FR_EXLM) // §
+<<<<<<< HEAD
+=======
+
+/* AltGr symbols
+ * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
+ * │   │   │ ~ │ # │ { │ [ │ | │ ` │ \ │   │ @ │ ] │ } │       │
+ * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┤
+ * │     │   │   │ € │   │   │   │   │   │   │   │   │ ¤ │     │
+ * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┐    │
+ * │      │   │   │   │   │   │   │   │   │   │   │   │   │    │
+ * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴────┤
+ * │    │   │   │   │   │   │   │   │   │   │   │   │          │
+ * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
+ * │    │    │    │                        │    │    │    │    │
+ * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
+ */
+// Row 1
+>>>>>>> firmware21
 #define FR_TILD ALGR(FR_EACU) // ~ (dead)
 #define FR_HASH ALGR(FR_DQUO) // #
 #define FR_LCBR ALGR(FR_QUOT) // {
@@ -113,6 +166,23 @@
 #define FR_AT   ALGR(FR_AGRV) // @
 #define FR_RBRC ALGR(FR_RPRN) // ]
 #define FR_RCBR ALGR(FR_EQL)  // }
+<<<<<<< HEAD
 #define FR_EURO ALGR(KC_E)    // €
 #define FR_CURR ALGR(FR_DLR)  // ¤
 
+=======
+// Row 2
+#define FR_EURO ALGR(KC_E)   // €
+#define FR_CURR ALGR(FR_DLR) // ¤
+
+// DEPRECATED
+#define FR_AMP   FR_AMPR
+#define FR_APOS  FR_QUOT
+#define FR_LESS  FR_LABK
+#define FR_OVRR  FR_DEG
+#define FR_UMLT  FR_DIAE
+#define FR_MU    FR_MICR
+#define FR_GRTR  FR_RABK
+#define FR_CCIRC FR_CIRC
+#define FR_BULT  FR_CURR
+>>>>>>> firmware21

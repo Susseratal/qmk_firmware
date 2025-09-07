@@ -127,5 +127,9 @@ TEST_F(PermissiveHold, tap_regular_key_while_layer_tap_key_is_held) {
     EXPECT_NO_REPORT(driver);
     layer_tap_hold_key.release();
     run_one_scan_loop();
+<<<<<<< HEAD
     VERIFY_AND_CLEAR(driver);
+=======
+    testing::Mock::VerifyAndClearExpectations(&driver);
+>>>>>>> firmware21
 }

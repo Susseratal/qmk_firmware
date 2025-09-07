@@ -67,9 +67,17 @@
 #    include "raw_hid.h"
 #endif
 
+<<<<<<< HEAD
 #ifdef WAIT_FOR_USB
 // TODO: Remove backwards compatibility with old define
 #    define USB_WAIT_FOR_ENUMERATION
+=======
+#ifdef WEBUSB_ENABLE
+#    include "webusb.h"
+#endif
+#ifdef JOYSTICK_ENABLE
+#    include "joystick.h"
+>>>>>>> firmware21
 #endif
 
 static report_keyboard_t keyboard_report_sent;
@@ -145,9 +153,50 @@ USB_ClassInfo_CDC_Device_t cdc_device = {
  *
  * FIXME: Needs doc
  */
+<<<<<<< HEAD
 static void send_raw_hid(uint8_t *data, uint8_t length) {
     if (length != RAW_EPSIZE) return;
     send_report(RAW_IN_EPNUM, data, RAW_EPSIZE);
+=======
+void raw_hid_send(uint8_t *data, uint8_t length) {
+    // TODO: implement variable size packet
+    if (length != RAW_EPSIZE) {
+        return;
+    }
+
+    if (USB_DeviceState != DEVICE_STATE_Configured) {
+        return;
+    }
+
+    // TODO: decide if we allow calls to raw_hid_send() in the middle
+    // of other endpoint usage.
+    uint8_t ep = Endpoint_GetCurrentEndpoint();
+
+    Endpoint_SelectEndpoint(RAW_IN_EPNUM);
+
+    // Check to see if the host is ready to accept another packet
+    if (Endpoint_IsINReady()) {
+        // Write data
+        if (Endpoint_Write_Stream_LE(data, RAW_EPSIZE, NULL)) {
+            rawhid_state.pairing = false;
+            rawhid_state.paired  = false;
+        }
+        // Finalize the stream transfer to send the last packet
+        Endpoint_ClearIN();
+    }
+
+    Endpoint_SelectEndpoint(ep);
+}
+
+/** \brief Raw HID Receive
+ *
+ * FIXME: Needs doc
+ */
+__attribute__((weak)) void raw_hid_receive(uint8_t *data, uint8_t length) {
+    // Users should #include "raw_hid.h" in their own code
+    // and implement this function there. Leave this as weak linkage
+    // so users can opt to not handle data coming in.
+>>>>>>> firmware21
 }
 
 /** \brief Raw HID Task
@@ -216,8 +265,131 @@ static void console_flush_task(void) {
     Endpoint_SelectEndpoint(ep);
 }
 
+<<<<<<< HEAD
 void console_task(void) {
     // do nothing
+=======
+#ifdef WEBUSB_ENABLE
+void webusb_send(uint8_t *data, uint8_t length) {
+    if (USB_DeviceState != DEVICE_STATE_Configured) {
+        return;
+    }
+
+    Endpoint_SelectEndpoint(WEBUSB_IN_EPNUM);
+
+    if (Endpoint_Write_Stream_LE(data, length, NULL)) {
+        // Stream failed to complete, resetting WEBUSB's state
+        webusb_state.paired  = false;
+        webusb_state.pairing = false;
+    }
+    Endpoint_ClearIN();
+}
+
+static void webusb_task(void) {
+    // Create a temporary buffer to hold the read in data from the host
+    uint8_t data[WEBUSB_EPSIZE];
+    bool    data_read = false;
+
+    // Device must be connected and configured for the task to run
+    if (USB_DeviceState != DEVICE_STATE_Configured) return;
+
+    Endpoint_SelectEndpoint(WEBUSB_OUT_EPNUM);
+
+    // Check to see if a packet has been sent from the host
+    if (Endpoint_IsOUTReceived()) {
+        // Check to see if the packet contains data
+        if (Endpoint_IsReadWriteAllowed()) {
+            /* Read data */
+            Endpoint_Read_Stream_LE(data, sizeof(data), NULL);
+            data_read = true;
+        }
+
+        // Finalize the stream transfer to receive the last packet
+        Endpoint_ClearOUT();
+
+        if (data_read) {
+            webusb_receive(data, sizeof(data));
+        }
+    }
+}
+
+/** Microsoft OS 2.0 Descriptor. This is used by Windows to select the USB driver for the device.
+ *
+ *  For WebUSB in Chrome, the correct driver is WinUSB, which is selected via CompatibleID.
+ *
+ *  Additionally, while Chrome is built using libusb, a magic registry key needs to be set containing a GUID for
+ *  the device.
+ */
+const MS_OS_20_Descriptor_t PROGMEM MS_OS_20_Descriptor = MS_OS_20_DESCRIPTOR;
+
+/** URL descriptor string. This is a UTF-8 string containing a URL excluding the prefix. At least one of these must be
+ * 	defined and returned when the Landing Page descriptor index is requested.
+ */
+const WebUSB_URL_Descriptor_t PROGMEM WebUSB_LandingPage = WEBUSB_URL_DESCRIPTOR(WEBUSB_LANDING_PAGE_URL);
+#endif
+
+/*******************************************************************************
+ * Joystick
+ ******************************************************************************/
+#ifdef JOYSTICK_ENABLE
+void send_joystick_packet(joystick_t *joystick) {
+    uint8_t timeout = 255;
+
+    static joystick_report_t r;
+    r = (joystick_report_t) {
+#    if JOYSTICK_AXES_COUNT > 0
+        .axes =
+        { joystick->axes[0],
+
+#        if JOYSTICK_AXES_COUNT >= 2
+          joystick->axes[1],
+#        endif
+#        if JOYSTICK_AXES_COUNT >= 3
+          joystick->axes[2],
+#        endif
+#        if JOYSTICK_AXES_COUNT >= 4
+          joystick->axes[3],
+#        endif
+#        if JOYSTICK_AXES_COUNT >= 5
+          joystick->axes[4],
+#        endif
+#        if JOYSTICK_AXES_COUNT >= 6
+          joystick->axes[5],
+#        endif
+        },
+#    endif // JOYSTICK_AXES_COUNT>0
+
+#    if JOYSTICK_BUTTON_COUNT > 0
+        .buttons = {
+            joystick->buttons[0],
+
+#        if JOYSTICK_BUTTON_COUNT > 8
+            joystick->buttons[1],
+#        endif
+#        if JOYSTICK_BUTTON_COUNT > 16
+            joystick->buttons[2],
+#        endif
+#        if JOYSTICK_BUTTON_COUNT > 24
+            joystick->buttons[3],
+#        endif
+        }
+#    endif // JOYSTICK_BUTTON_COUNT>0
+    };
+
+    /* Select the Joystick Report Endpoint */
+    Endpoint_SelectEndpoint(JOYSTICK_IN_EPNUM);
+
+    /* Check if write ready for a polling interval around 10ms */
+    while (timeout-- && !Endpoint_IsReadWriteAllowed())
+        _delay_us(40);
+    if (!Endpoint_IsReadWriteAllowed()) return;
+
+    /* Write Joystick Report Data */
+    Endpoint_Write_Stream_LE(&r, sizeof(joystick_report_t), NULL);
+
+    /* Finalize the stream transfer to send the last packet */
+    Endpoint_ClearIN();
+>>>>>>> firmware21
 }
 #endif
 
@@ -366,6 +538,12 @@ void EVENT_USB_Device_ConfigurationChanged(void) {
     ConfigSuccess &= Endpoint_ConfigureEndpoint((CONSOLE_IN_EPNUM | ENDPOINT_DIR_IN), EP_TYPE_INTERRUPT, CONSOLE_EPSIZE, 1);
 #endif
 
+#ifdef WEBUSB_ENABLE
+    /* Setup Webusb Endpoints */
+    ConfigSuccess &= Endpoint_ConfigureEndpoint(WEBUSB_IN_EPADDR, EP_TYPE_INTERRUPT, WEBUSB_EPSIZE, 1);
+    ConfigSuccess &= Endpoint_ConfigureEndpoint(WEBUSB_OUT_EPADDR, EP_TYPE_INTERRUPT, WEBUSB_EPSIZE, 1);
+#endif
+
 #ifdef MIDI_ENABLE
     /* Setup MIDI stream endpoints */
     ConfigSuccess &= Endpoint_ConfigureEndpoint((MIDI_STREAM_IN_EPNUM | ENDPOINT_DIR_IN), EP_TYPE_BULK, MIDI_STREAM_EPSIZE, 1);
@@ -511,6 +689,48 @@ void EVENT_USB_Device_ControlRequest(void) {
             }
 
             break;
+#ifdef WEBUSB_ENABLE
+        case WEBUSB_VENDOR_CODE:
+            if (USB_ControlRequest.bmRequestType == (REQDIR_DEVICETOHOST | REQTYPE_VENDOR | REQREC_DEVICE)) {
+                switch (USB_ControlRequest.wIndex) {
+                    case WebUSB_RTYPE_GetURL:
+                        switch (USB_ControlRequest.wValue) {
+                            case WEBUSB_LANDING_PAGE_INDEX:
+                                Endpoint_ClearSETUP();
+                                /* Write the descriptor data to the control endpoint */
+                                Endpoint_Write_Control_PStream_LE(&WebUSB_LandingPage, WebUSB_LandingPage.Header.Size);
+                                /* Release the endpoint after transaction. */
+                                Endpoint_ClearStatusStage();
+                                break;
+                            default: /* Stall transfer on invalid index. */
+                                Endpoint_StallTransaction();
+                                break;
+                        }
+                        break;
+                    default: /* Stall on unknown WebUSB request */
+                        Endpoint_StallTransaction();
+                        break;
+                }
+            }
+
+            break;
+        case MS_OS_20_VENDOR_CODE:
+            if (USB_ControlRequest.bmRequestType == (REQDIR_DEVICETOHOST | REQTYPE_VENDOR | REQREC_DEVICE)) {
+                switch (USB_ControlRequest.wIndex) {
+                    case MS_OS_20_DESCRIPTOR_INDEX:
+                        Endpoint_ClearSETUP();
+                        /* Write the descriptor data to the control endpoint */
+                        Endpoint_Write_Control_PStream_LE(&MS_OS_20_Descriptor, MS_OS_20_Descriptor.Header.TotalLength);
+                        /* Release the endpoint after transaction. */
+                        Endpoint_ClearStatusStage();
+                        break;
+                    default: /* Stall on unknown MS OS 2.0 request */
+                        Endpoint_StallTransaction();
+                        break;
+                }
+            }
+            break;
+#endif
     }
 
 #ifdef VIRTSER_ENABLE
@@ -862,6 +1082,17 @@ void protocol_post_task(void) {
     CDC_Device_USBTask(&cdc_device);
 #endif
 
+<<<<<<< HEAD
+=======
+#ifdef RAW_ENABLE
+    raw_hid_task();
+#endif
+
+#ifdef WEBUSB_ENABLE
+    webusb_task();
+#endif
+
+>>>>>>> firmware21
 #if !defined(INTERRUPT_CONTROL_ENDPOINT)
     USB_USBTask();
 #endif

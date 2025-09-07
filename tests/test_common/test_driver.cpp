@@ -31,7 +31,11 @@ uint8_t hex_digit_to_keycode(uint8_t digit) {
 }
 } // namespace
 
+<<<<<<< HEAD
 TestDriver::TestDriver() : m_driver{&TestDriver::keyboard_leds, &TestDriver::send_keyboard, &TestDriver::send_nkro, &TestDriver::send_mouse, &TestDriver::send_extra} {
+=======
+TestDriver::TestDriver() : m_driver{&TestDriver::keyboard_leds, &TestDriver::send_keyboard, &TestDriver::send_mouse, &TestDriver::send_system, &TestDriver::send_consumer} {
+>>>>>>> firmware21
     host_set_driver(&m_driver);
     m_this = this;
 }
@@ -87,4 +91,28 @@ void expect_unicode_code_point(TestDriver& driver, uint32_t code_point) {
     EXPECT_REPORT(driver, (KC_SPACE));
     EXPECT_EMPTY_REPORT(driver);
 }
+<<<<<<< HEAD
+=======
+
+namespace internal {
+void expect_unicode_code_point(TestDriver& driver, uint32_t code_point) {
+    testing::InSequence seq;
+    EXPECT_REPORT(driver, (KC_LCTL, KC_LSFT, KC_U));
+
+    bool print_zero = false;
+    for (int i = 7; i >= 0; --i) {
+        if (i <= 3) {
+            print_zero = true;
+        }
+
+        const uint8_t digit = (code_point >> (i * 4)) & 0xf;
+        if (digit || print_zero) {
+            EXPECT_REPORT(driver, (hex_digit_to_keycode(digit)));
+            print_zero = true;
+        }
+    }
+
+    EXPECT_REPORT(driver, (KC_SPC));
+}
+>>>>>>> firmware21
 } // namespace internal

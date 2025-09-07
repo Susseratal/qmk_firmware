@@ -33,6 +33,7 @@ TEST_F(ActionLayer, LayerTapToggleWithToggleWithKeypress) {
     /* Tap TT five times . */
     /* TODO: Tapping Force Hold breaks TT */
     EXPECT_NO_REPORT(driver);
+<<<<<<< HEAD:tests/tap_hold_configurations/quick_tap/test_action_layer.cpp
 
     layer_key.press();
     run_one_scan_loop();
@@ -41,6 +42,8 @@ TEST_F(ActionLayer, LayerTapToggleWithToggleWithKeypress) {
     expect_layer_state(0);
 
     idle_for(QUICK_TAP_TERM + 10);
+=======
+>>>>>>> firmware21:tests/tap_hold_configurations/tapping_force_hold/test_action_layer.cpp
 
     layer_key.press();
     run_one_scan_loop();
@@ -78,5 +81,9 @@ TEST_F(ActionLayer, LayerTapToggleWithToggleWithKeypress) {
     regular_key.release();
     run_one_scan_loop();
     expect_layer_state(0);
+<<<<<<< HEAD:tests/tap_hold_configurations/quick_tap/test_action_layer.cpp
     VERIFY_AND_CLEAR(driver);
+=======
+    testing::Mock::VerifyAndClearExpectations(&driver);
+>>>>>>> firmware21:tests/tap_hold_configurations/tapping_force_hold/test_action_layer.cpp
 }

@@ -133,7 +133,11 @@ TEST_F(DefaultTapHold, tap_regular_key_while_layer_tap_key_is_held) {
     EXPECT_REPORT(driver, (KC_P));
     EXPECT_REPORT(driver, (KC_P, KC_A));
     EXPECT_REPORT(driver, (KC_P));
+<<<<<<< HEAD
     EXPECT_EMPTY_REPORT(driver);
+=======
+    EXPECT_CALL(driver, send_keyboard_mock(_));
+>>>>>>> firmware21
     layer_tap_hold_key.release();
     run_one_scan_loop();
     VERIFY_AND_CLEAR(driver);
@@ -213,7 +217,11 @@ TEST_F(DefaultTapHold, tap_and_hold_mod_tap_hold_key) {
     set_keymap({mod_tap_hold_key});
 
     /* Press mod-tap-hold key. */
+<<<<<<< HEAD
     EXPECT_REPORT(driver, (KC_LEFT_SHIFT));
+=======
+    EXPECT_REPORT(driver, (KC_LSHIFT));
+>>>>>>> firmware21
     mod_tap_hold_key.press();
     idle_for(TAPPING_TERM + 1);
     VERIFY_AND_CLEAR(driver);
@@ -222,5 +230,9 @@ TEST_F(DefaultTapHold, tap_and_hold_mod_tap_hold_key) {
     EXPECT_EMPTY_REPORT(driver);
     mod_tap_hold_key.release();
     run_one_scan_loop();
+<<<<<<< HEAD
     VERIFY_AND_CLEAR(driver);
+=======
+    testing::Mock::VerifyAndClearExpectations(&driver);
+>>>>>>> firmware21
 }

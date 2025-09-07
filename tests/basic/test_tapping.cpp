@@ -121,6 +121,7 @@ TEST_F(Tapping, ANewTapWithinTappingTermIsBuggy) {
     key_shift_hold_p_tap.release();
     run_one_scan_loop();
 }
+<<<<<<< HEAD
 
 TEST_F(Tapping, TapA_CTL_T_KeyWhileReleasingShift) {
     TestDriver driver;
@@ -190,3 +191,5 @@ TEST_F(Tapping, TapA_CTL_T_KeyWhileReleasingLayer) {
     run_one_scan_loop();
     VERIFY_AND_CLEAR(driver);
 }
+=======
+>>>>>>> firmware21
